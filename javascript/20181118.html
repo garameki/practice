@@ -1,0 +1,48 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type='text/javascript'>
+<!--
+	//--表示属性set（表示）
+	function showLAYER(layName){
+		if(document.getElementById)
+			document.getElementById(layName).style.visibility='visible'
+		else if(document.all)
+		document.all(layName).style.visibility='visinle'
+	else if(document.layers)
+		document.layers[layName].visibility='show'
+	}
+//-->
+</script>
+<style type="text/css">
+<!--
+.posabs{position	: absolute	}
+#test0	{ left		: 120px		;
+	  top		: 80px		;
+	  font-size	: 18pt		;
+	  visibility	: hidden	;
+}
+#test1	{ left		: 120px		;
+	  top		: 180px		;
+	  font-family	: Osaka,Arial	;
+	  font-size	: 12pt		;
+}
+-->
+</style>
+</head>
+<body>
+<div class="posabs" id="test0">
+<font face="Osaka,MS PGothic">どうも(^^)
+<br>この文字はvisibility='vidible'
+<br>で出しました
+</font>
+</div>
+<div class="posabs" id="test1">
+<form>
+<input type="button" value="click!" onClick="showLAYER('test0')">
+</form>
+</div>
+</body>
+</html>
+
