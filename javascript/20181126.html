@@ -1,21 +1,20 @@
-html
+<!DOCTYPE html>
+<html>
 <head>
+<meta charset="utf-8">
 <title></title>
 <script type='text/javascript'>
-<!---
 	//--表示属性set1(表示)
-	funtion showLAYER(laytime){
+	function showLAYER(laytime){
 	if(document.getElementById)
-	document.getlkementById(laytime).style.visibility='visible'
+	document.getElementById(laytime).style.visibility='visible'
 	else if(document.all)
 	document.all(layName).style.visibility='visible'
 	else if(documentlsyers)
 	document.layaers[layName].visibility='show'
 }
-//-->
-</sclipt>
+</script>
 <style type "text/css">
-<!--
 .posabs	{ position	:	absolute	}
 #test0	{ left		:	140px		;
 	  top		:	110px		;
@@ -26,15 +25,15 @@ html
 	  font-family	:	Osala,Arial	;
 	  font-size	:	12px		;
 }
--->
 </style>
 </head>
 <body>
+こんにちは
 <div class="posabs" id="test0">
-<img arc="char.gif" width="100" height="119">
+<img src="char.jpg" width="100" height="119">
 </div>
 <div class="posabs" id="test1">
-<a href="#" onclick="showLAYER('test0');return fales">クリックしてね
+<a href="#" onclick="showLAYER('test0');return false">クリックしてね
 </a>
 </div>
 </body>
