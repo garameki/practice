@@ -1,0 +1,232 @@
+<!DOCTYPE htm>
+<html lang = "ja">
+<head>
+<script type = "application/javascript">
+let idselect,idquestion,idhp,idimage;
+let hp = 1;
+onload = function() {
+	idselect = document.getElementById('select');
+	idimage = document.getElementById('image');
+	idquestion = document.getElementById('question');
+	idhp = document.getElementById('hp');
+	idresult = document.getElementById('result');
+	idquestion.innerHTML = "GAME START";
+	idselect.innerHTML = "HIT ANY KEY";
+	idhp.innerText = "HP " + hp.toString();
+	//id.innerHTML = "1.トイレ<br>2.キッチン<br>3.仲間と連絡を取る";
+	//idhp.innerText = "HP " + hp.toString();
+};
+onkeydown = function(event) { 
+	scine1();
+};
+const scine1 = function() {
+	idquestion.innerHTML = "どっちに行く";
+	idselect.innerHTML = "1.左<br>2.右";
+	idhp.innerText = "HP " + hp.toString();
+	onkeydown = function (event) {
+		const key = event.keyCode;
+		if (key == 97) {
+			idresult.innerText = "左に進んだ";
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine2();
+			},2000);
+		}
+		if (key == 98) {
+			idresult.innerText = "犯人を見つけたが、襲われて負傷した";
+			hp--;
+			idhp.innerText = "HP " + hp.toString();
+			onkeydown = function(){ };
+		}
+	};
+};
+const scine2 = function() {
+	idquestion.innerHTML = "扉が二つある。どっちに行く";
+	idselect.innerHTML = "1.左<br>2.右";
+	idhp.innerText = "HP " + hp.toString();
+	onkeydown = function (event) {
+		const key = event.keyCode;
+		if (key == 97) {
+			idresult.innerText = "犯人はいなかったが、宝箱があった";
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine3();
+			},2000 );
+		}
+		if (key == 98) {
+			idresult.innerText = "魔物に喰われた";
+			hp = 0;
+			idhp.innerText = "HP " + hp.toString();
+			onkeydown = function(){ };
+			idimage.src = "images/kuwareru.jpg";
+		}
+	};
+};
+const scine3 = function() {
+	idquestion.innerHTML = "剣があった。どうする";
+	idselect.innerHTML = "1.拾う<br>2.先へ行く";
+	idhp.innerText = "HP " + hp.toString();
+	onkeydown = function (event) {
+		const key = event.keyCode;
+		if (key == 97) {
+			idresult.innerText = "経験値が上がった";
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine4();
+			},2000);
+		}
+		if (key == 98) {
+			idresult.innerText = "魔物に出会い、攻撃出来ずに死んだ";
+			hp = 0;
+			idhp.innerText = "HP " + hp.toString();
+			onkeydown = function(){ };
+			idimage.src = "images/kuwareru.jpg";
+		}
+	};
+};
+const scine4 = function() {
+	idquestion.innerHTML = "奥には敵がいた。";
+	idselect.innerHTML = "1.相手をする<br>2.先へ行く";
+	idhp.innerText = "HP " + hp.toString();
+	onkeydown = function (event) {
+		const key = event.keyCode;
+		if (key == 97) {
+			idresult.innerText = "敵を倒し、経験値が上がった";
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine5();
+			},2000);
+		}
+		if (key == 98) {
+			idresult.innerText = "攻撃出来ずに死んだ";
+			hp = 0;
+			idhp.innerText = "HP " + hp.toString();
+			onkeydown = function(){ };
+			idimage.src = "images/kuwareru.jpg";
+		}
+	};
+};
+const scine5 = function() {
+	idquestion.innerHTML = "敵を倒したら、赤いペンダントを見つけた。";
+	idselect.innerHTML = "1.拾う<br>2.無視して先に行く";
+	idhp.innerText = "HP " + hp.toString();
+	onkeydown = function (event) {
+		const key = event.keyCode;
+		if (key == 97) {
+			idresult.innerText = "いい予感がしてきた";
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine6();
+			},2000);
+		}
+		if (key == 98) {
+			idresult.innerText = "ペンダントに吸い込まれてしまった";
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine7();
+			},2000);
+		}
+	};
+};
+const scine6 = function() {
+	idquestion.innerHTML = "先に進むと大広間があり右の壁に牢屋の扉がある。";
+	idselect.innerHTML = "1.無理して開けようとする<br>2.無視して先に行く";
+	idhp.innerText = "HP " + hp.toString();
+	onkeydown = function (event) {
+		const key = event.keyCode;
+		if (key == 97) {
+			idresult.innerText = "鍵がないため開かず、電撃が走り気絶した";
+			scine7();
+		}
+		if (key == 98) {
+			idresult.innerText = "左の壁にカエルが一匹いた";
+			scine8();
+		}
+	};
+};
+const scine7 = function() {
+	idquestion.innerHTML = "気が付くと牢屋の中にいて、奥に一人の人間がいた。";
+	idselect.innerHTML = "1.話しかける<br>2.助けを求めて声を出す";
+	idhp.innerText = "HP " + hp.toString();
+	onkeydown = function (event) {
+		const key = event.keyCode;
+		if (key == 97) {
+			idresult.innerText = "「私が寄りかかっている後ろの壁の中には地下に通じる階段がある。このハンマーで壁を壊せば先に進める。そこから抜け出せるはずだ。」ハンマーを手に入れた";
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine5();
+			},10000);
+		}
+		if (key == 98) {
+			idresult.innerText = "見張りに気づかれて殺された";
+			hp = 0;
+			idhp.innerText = "HP " + hp.toString();
+			onkeydown = function(){ };
+		}
+	};
+};
+const scine8 = function() {
+	idquestion.innerHTML = "カエルは言葉をしゃべるかのように口をパクパクしている。しかも、自分のものとそっくりのペンダントをカエルは身につけている";
+	idselect.innerHTML = "1.ペンダントをかざす<br>2.先へ行く";
+	idhp.innerText = "HP " + hp.toString();
+	onkeydown = function (event) {
+		const key = event.keyCode;
+		if (key == 97) {
+			idresult.innerText = "呪いが解けて、カエルが老人になった";
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine9();
+			},2000);
+		}
+		if (key == 98) {
+			idresult.innerText = "ペンダントに吸い込まれてしまった";
+			hp = 0;
+			idhp.innerText = "HP " + hp.toString();
+			onkeydown = function(){ };
+			idimage.src = "images/kuwareru.jpg";
+		}
+	};
+};
+const scine9 = function() {
+	idquestion.innerHTML = "老人は地図を差し出している";
+	idselect.innerHTML = "1.地図をもらう<br>2.もらわない";
+	idhp.innerText = "HP " + hp.toString();
+	onkeydown = function (event) {
+		const key = event.keyCode;
+		if (key == 97) {
+			idresult.innerText = "呪いが解けて、カエルが老人になった";
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine9();
+			},2000);
+		}
+		if (key == 98) {
+			idresult.innerText = "ペンダントに吸い込まれてしまった";
+			hp = 0;
+			idhp.innerText = "HP " + hp.toString();
+			onkeydown = function(){ };
+			idimage.src = "images/kuwareru.jpg";
+		}
+	};
+};
+const scine1p = function() {
+};
+</script>
+</head>
+<body>
+<div id = "hp"></div>
+<div id = "question"></div>
+<div id = "select"></div>	
+<div id = "result"></div>	
+<img id = "image">	
+</body>
+</html>

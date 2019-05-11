@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="application/javascript">
+onload=function(){
+	var ele=document.getElementsByTagName('canvas')[0];
+	var ctx=ele.getContext('2d');
+	ctx.lineWidth=1;
+	ctx.strokeStyle="#000000";
+	ctx.moveTo(10,15);
+	ctx.lineTo(3000,2000);
+	ctx.stroke();
+	ctx.strokeStyle="#F00000";
+	ctx.moveTo(10,25);
+	ctx.lineTo(25,15);
+	ctx.stroke();
+	ctx.strokeStyle="#FF0000";
+	ctx.moveTo(25,25);
+	ctx.lineTo(30,45);
+	ctx.stroke();
+	ctx.strokeStyle="#0F0000";
+	ctx.moveTo(10,10);
+	ctx.lineTo(90,90);
+	ctx.stroke();
+	ctx.strokeStyle="#00F000";
+	ctx.moveTo(50,25);
+	ctx.lineTo(70,15);
+	ctx.stroke();
+	ctx.strokeStyle="#0000F0";
+	ctx.moveTo(10,05);
+	ctx.lineTo(90,85);
+	ctx.stroke();
+	ctx.strokeStyle="#00FFF0";
+	ctx.moveTo(15,45);
+	ctx.lineTo(95,20);
+	ctx.stroke();
+	ctx.strokeStyle="#F0F0F0";
+	ctx.moveTo(10,75);
+	ctx.lineTo(90,45);
+	ctx.stroke();
+};	
+</script>
+</head>
+<body>
+こんにちは
+<canvas>
+</canvas>
+</body>
+</html>
+
