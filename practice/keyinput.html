@@ -2,6 +2,10 @@
 <html lang = "ja">
 <head>
 <script type = "application/javascript">
+const otoKiru  = new Audio();
+otoKiru.src = "sound/kiru.mp3"
+const otoHeal = new Audio();
+otoHeal.src = "sound/heal.mp3"
 let idselect,idquestion,idhp,idimage;
 let hp = 1;
 onload = function() {
@@ -34,7 +38,7 @@ const scine1 = function() {
 			},2000);
 		}
 		if (key == 98) {
-			idresult.innerText = "犯人を見つけたが、襲われて負傷した";
+			idresult.innerText = "怪しい黒マントの男を見かけたが、襲われて負傷した";
 			hp--;
 			idhp.innerText = "HP " + hp.toString();
 			onkeydown = function(){ };
@@ -48,7 +52,7 @@ const scine2 = function() {
 	onkeydown = function (event) {
 		const key = event.keyCode;
 		if (key == 97) {
-			idresult.innerText = "犯人はいなかったが、宝箱があった";
+			idresult.innerText = "宝箱があった";
 			const hoge = setInterval(function() {
 				clearInterval(hoge);
 				idresult.innerText = "";
@@ -71,6 +75,7 @@ const scine3 = function() {
 	onkeydown = function (event) {
 		const key = event.keyCode;
 		if (key == 97) {
+			otoHeal.play();
 			idresult.innerText = "経験値が上がった";
 			const hoge = setInterval(function() {
 				clearInterval(hoge);
@@ -89,11 +94,12 @@ const scine3 = function() {
 };
 const scine4 = function() {
 	idquestion.innerHTML = "奥には敵がいた。";
-	idselect.innerHTML = "1.相手をする<br>2.先へ行く";
+	idselect.innerHTML = "1.倒す<br>2.先へ行く";
 	idhp.innerText = "HP " + hp.toString();
 	onkeydown = function (event) {
 		const key = event.keyCode;
 		if (key == 97) {
+			otoKiru.play();
 			idresult.innerText = "敵を倒し、経験値が上がった";
 			const hoge = setInterval(function() {
 				clearInterval(hoge);
@@ -142,11 +148,19 @@ const scine6 = function() {
 		const key = event.keyCode;
 		if (key == 97) {
 			idresult.innerText = "鍵がないため開かず、電撃が走り気絶した";
-			scine7();
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine();
+			},2000);
 		}
 		if (key == 98) {
 			idresult.innerText = "左の壁にカエルが一匹いた";
-			scine8();
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine8();
+			},2000);
 		}
 	};
 };
@@ -202,19 +216,67 @@ const scine9 = function() {
 	onkeydown = function (event) {
 		const key = event.keyCode;
 		if (key == 97) {
-			idresult.innerText = "呪いが解けて、カエルが老人になった";
+			idresult.innerText = "老人はゆっくりと話し始めた";
 			const hoge = setInterval(function() {
 				clearInterval(hoge);
 				idresult.innerText = "";
-				scine9();
+				scine10();
 			},2000);
 		}
 		if (key == 98) {
-			idresult.innerText = "ペンダントに吸い込まれてしまった";
-			hp = 0;
-			idhp.innerText = "HP " + hp.toString();
-			onkeydown = function(){ };
-			idimage.src = "images/kuwareru.jpg";
+			idresult.innerText = "警備につかまった見張り「貴様、何者だ。」";
+			const hoge = setInetrval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+			},2000);
+		}
+	};
+};
+const scine10 = function() {
+	idquestion.innerHTML = "老人「その地図に書いてある通りに進めば、この大陸を治めている王がいる城にたどり着くはずじゃ。イテテ、ああもうダメじゃァ・・・」";
+	idselect.innerHTML = "1.持ち物のポーションを渡す<br>2.見過ごして外に出る";
+	idhp.innerText = "HP " + hp.toString();
+	onkeydown = function (event) {
+		const key = event.keyCode;
+		if (key == 97) {
+			idresult.innerText = "老人「ありがとう。お礼にこのアーマーをやろう。」アーマーを自分の持っている服と交換してくれた。「メタルアーマー」を手に入れた。しかし、出口の扉が開かないため、手前にもどった。";
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine();
+			},10000);
+		}
+		if (key == 98) {
+			idresult.innerText = "老人「待ってくれ！若いの。ウゥ・・・」先に行かせてくれない。";
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine10();
+			},2000);
+		}
+	};
+};
+const scine11 = function() {
+	idquestion.innerHTML = "老人「その地図に書いてある通りに進めば、この大陸を治めている王がいる白にたどり着くはずじゃ。イテテ、ああもうダメじゃァ・・・」";
+	idselect.innerHTML = "1.持ち物のポーションを渡す<br>2.見過ごして外に出る";
+	idhp.innerText = "HP " + hp.toString();
+	onkeydown = function (event) {
+		const key = event.keyCode;
+		if (key == 97) {
+			idresult.innerText = "老人「ありがとう。お礼にこのアーマーをやろう。」アーマーを自分の持っている服と交換してくれた。「メタルアーマー」を手に入れた。しかし、出口の扉が開かないため、手前にもどった。";
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine();
+			},10000);
+		}
+		if (key == 98) {
+			idresult.innerText = "老人「待ってくれ！若いの。ウゥ・・・」先に行かせてくれない。";
+			const hoge = setInterval(function() {
+				clearInterval(hoge);
+				idresult.innerText = "";
+				scine10();
+			},2000);
 		}
 	};
 };
