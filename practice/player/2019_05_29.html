@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="application/javascript" src="main.js"></script>
+		<script type="application/javascript">
+const sentences = [
+[57.8,"I've still not decided what to wear for tonight's party.","今夜のパーティーに何を着ようか、まだ決めていないんだ。"]
+,[62.5,"How about the pink shirt I got you for your birthday?","私があなたの誕生日に買ってあげたピンクのシャツはどうかしら。"]
+,[66,"I love that shirt,","あのシャツは大好きだけど、"]
+,[68,"but I wore it at the last party.","前回のパーティーで着たんだ。"]
+,[71,"OK.","わかったわ。"]
+,[73,"Put on your new black shirt and your white jeans,","あなたは新しい黒いシャツと白いジーンズを着て、"]
+,[76.5,"and let's see how that looks.","それがどう見えるか確かめてみましょう。"]
+,[78,"Good idea.","いい考えだね。"]
+,[80,"-","-"]
+,[82,"Well,","さて、"]
+,[83,"what do you think?","どう思う？"]
+,[84,"Perfect.","完璧よ。"]
+,[85,"Thanks.","ありがとう。"]
+,[86.5,"Now","じゃあ、"]
+,[87,"how about you?","君はどうするの？"]
+,[88.5,"What are you going to wear?","何を着るつもり？"]
+,[90,"It's a surprise.","それは後のお楽しみよ。"]
+,[91.5,"I can't wait","待ちきれないな"]
+,[94]
+];
+
+const vocabularies = [
+[454,456.5,"He did'nt show up for the meeting.","彼はミーティングに現れなかった。"]
+,[420+54,420+57,"I ran into an old friend of mine.","私は古い友人にバッタリ会った。"]
+,[480+25.5,480+27.5,"Put it on.","それを着なさい。"]
+,[660+27.5,660+31,"Are you looking for anything in paticular madam?","(店員が女性客に)何か特にお探しでしょうか、お客様？"]
+,[60*12+30,60*12+36.5,"We had to put off the party we had planned for Kate's birthday, as she caught the flu.","私たちはケイトの誕生日に計画したパーティーを延期しなければならなかった、彼女がインフルエンザになったので。"]
+,[60*12+30,60*12+32,"part1","部分1"]
+,[60*12+32,60*12+34,"part2","部分2"]
+,[60*12+34,60*12+36.5,"part3","部分3"]
+];
+		</script>
+	</head>
+	<body>
+		<video controls id="video" width="420" height="300">
+			<source src="oto/2019_05_29.mp4">
+		</video>
+		<h1>2019年5月29日(火)</h1>
+		<h2>CONVERSATION</h2>
+		<button onclick="setButtons(ENG);">英語</button> <button onclick="setButtons(JAP);">日本語</button><br>
+		<div id="conversation"></div>
+		<br><br>
+		<h2>VOCABULARY</h2>
+		<button onclick="setVocabularies(ENG);">英語</button> <button onclick="setVocabularies(JAP);">日本語</button><br>
+		<div id="vocabularies"></div>
+
+	</body>
+</html>

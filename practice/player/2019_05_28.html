@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="application/javascript" src="main.js"></script>
+		<script type="application/javascript">
+const sentences = [
+[49,"Hi,Steve","こんにちは、スティーブ。"]
+,[50,"Wow,you have a great tan!","わあ、あなたは見事な日焼けをしているわね！"]
+,[52.5,"I guess you really enjoyed your holiday in Greece.","ギリシャでの休暇をとても楽しんだようね。"]
+,[56.2,"Yes.","はい。"]
+,[56.7,"Overall,it was wonderful.","全体として見れば素晴らしかったです。"]
+,[59.5,"Overall?","全体として?"]
+,[61.1,"Yes.","ええ。"]
+,[62,"I mean the wether was fantastic,","つまり、天気は素晴らしかったし、"]
+,[64.5,"the people were really friendly and helpful,","人々はとても友好的で親切で、"]
+,[68,"and the food was delicious.,","それに食べ物はおいしかったです。"]
+,[70,"So what was the problem?","だったら何が問題だったの？"]
+,[73,"Well,the hotel didn't tell us that there was a new wing under construction.","それが、そのホテルは新館が建設中だってことを僕たちに知らせていなかったんです。"]
+,[79,"Oh,no!","ああ、そんな！"]
+,[80.5,"So it was very noisy?","だから、騒音がひどかったのね。"]
+,[82.2,"Exactly.","そのとおりです。"]
+,[84,"From 8 a.m. to 6 p.m. every day.","毎日午前８時から午後６時までね。"]
+,[88.5,"That's too bad.","それはお気の毒に。"]
+,[92]
+];
+
+const vocabularies = [
+[504.5,517,"I studied math under a famous professor.","私は高名な教授の下で数学を学んだ"]
+,[524,540,"She claimed she committed the crime under the influence of her husband.","彼女は夫にそそのかされてその犯罪を犯したのだと主張した。"]
+,[576.5,595,"She wouldn't cheat on him: she is above that.","彼女は浮気なんかしないよ。そんなことをする人じゃない。"]
+,[600.5,620,"His behavior is beyond comprehension.","彼の行動は理解できません。"]
+,[690,705,"The elevator will be under repair all morning","そのエレベーターは午前中ずっと修理中となります。"]
+,[761.5,778,"My son is making great progress under the influence of his new teacher.","私の息子はいま、新しい先生の影響ですごく進歩しているよ。"]
+];
+		</script>
+	</head>
+	<body>
+		<video controls id="video" width="420" height="300">
+			<source src="oto/2019_05_28.mp4">
+		</video>
+		<h2>CONVERSATION</h2>
+		<button onclick="setButtons(ENG);">英語</button> <button onclick="setButtons(JAP);">日本語</button><br>
+		<div id="conversation"></div>
+		<br><br>
+		<h2>VOCABULARY</h2>
+		<button onclick="setVocabularies(ENG);">英語</button> <button onclick="setVocabularies(JAP);">日本語</button><br>
+		<div id="vocabularies"></div>
+
+	</body>
+</html>
