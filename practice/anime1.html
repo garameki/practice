@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>自作アニメ1</title>
+<script type="application/javascript">
+onload = function() {
+	const idImage = document.getElementById ('result');
+	const sImgs = ["hito1.jpg","hito2.jpg","hito3.jpg","hito2.jpg"];
+	let ii = 0;
+	const hoge = setInterval(function() {
+		ii++;
+		idImage.src = "images/" + sImgs[ii%4];
+	},1000);
+};
+</script>
+</head>
+<body>
+<img id="result" src="images/hito1.jpg">
+</body>
+</html>
+
+

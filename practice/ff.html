@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>勇者の終わりなき旅</title>
+<script type="application/javascript">
+onload = function() {
+	idField = document.getElementById('field');
+	idStatus = document.getElementById('status') ;
+	const ctx = idField.getContext('2d');
+	let imgTown = new Image();
+	imgTown.src = "images/fftown.png";
+	imgTown.onload = function() {
+		ctx.drawImage(imgTown,164,100);
+	};
+	let imgField = new Image();
+	imgField.src = "images/ffnohara.png";
+	imgField.onload = function() {
+		ctx.drawImage(imgField,100,100);
+	};
+	let imgYama = new Image();
+	imgYama.src = "images/ffyama.png";
+	imgYama.onload = function() {
+		ctx.drawImage(imgYama,228,100);
+	};
+	let imgMigi = new Image();
+	imgMigi.src = "images/ffmigi.png";
+	imgMigi.onload = function() {
+		ctx.drawImage(imgMigi,100,164);
+	};
+	let imgUmi = new Image();
+	imgUmi.src = "images/ffumi.png";
+	imgUmi.onload = function() {
+		ctx.drawImage(imgUmi,292,100);
+		ctx.drawImage(imgUmi,292,36);
+		ctx.drawImage(imgUmi,228,36);
+		ctx.drawImage(imgUmi,164,36);
+		ctx.drawImage(imgUmi,100,36);
+		ctx.drawImage(imgUmi,36,36);
+		ctx.drawImage(imgUmi,36,100);
+		ctx.drawImage(imgUmi,36,164);
+		ctx.drawImage(imgUmi,292,164);
+		for(let ii = 0;ii < 5;ii++) {
+			ctx.drawImage(imgUmi,64*ii+36,228);
+		};
+		ctx.drawImage(imgUmi,36,228);
+		ctx.drawImage(imgUmi,292,100);
+	};
+	let imgSabaku = new Image();
+	imgSabaku.src = "images/ffsabaku.png";
+	imgSabaku.onload = function() {
+		ctx.drawImage(imgSabaku,164,164);
+	};
+	let imgMori = new Image();
+	imgMori.src = "images/ffmori.png";
+	imgMori.onload = function() {
+		ctx.drawImage(imgMori,228,164);
+	};
+};
+</script>
+</body>
+<canvas id="field" width="500px" height="500px"></canvas>
+<div id="status"></div>
+</body>
+</html>
