@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="application/javascript" src="main2.js"></script>
+		<script type="application/javascript">
+
+const names = ["Neithan","Sabrina"];
+const sentences = [
+ [50.5,1,"So we finally got to eat in a Taiwanese night market.","さあ、僕たちはついに台湾の夜市で食事ができるね。"]
+,[55.0,2,"Yes","ええ、"]
+,[56.0,2,"Taipei is a food paradaise.","台北は食の楽園なのよ。"]
+,[58.5,2,"I wanto to try the \"stincky tofu\".","「臭豆腐」を試してみたいわ。"]
+,[61.0,1,"Stinky tofu?","臭豆腐だって？"]
+,[62.9,1,"It doesn't sound so good to me.","僕にはあまりおいしそうに聞こえないけど。"]
+,[65.0,2,"Come on,Nathan","何言ってるのネイサン。"]
+,[67.5,2,"You have to be more adventureous.","あなたはもっと冒険的になるべきよ。"]
+,[70.0,1,"OK,I'll try it","わかった、食べてみるよ。"]
+,[74.0,1,"Hmm...","おや、"]
+,[74.9,1,"It's actually quite tasty.","意外だけど、とてもおいしいね。"]
+,[77.0,2,"I told you.","そう言ったじゃない。"]
+,[78.5,1,"Right.","まったくだ。"]
+,[79.5,1,"This is on me.","これは僕がおごるよ。"]
+,[81.0,2,"Thanks a lot.","どうもありがとう。"]
+,[82.5,1,"Oh,no!","おや、大変だ！"]
+,[84.0,1,"Where's my wallet?","僕の財布はどこに行ったんだろう？"]
+,[86.0,1,"It was in my jacket pocket.","上着のポケットに入れておいたんだけど。"]
+,[88.0,2,"Look.","ほら見て。"]
+,[89.0,2,"It's under the table.","テーブルの下に落ちてるわよ。"]
+,[90.5,1,"Thank goodness!","ああ、よかった。！"]
+,[93.0]
+];
+
+const vocabularies = [
+[480+17.8,480+20,"under-the-table dealings","裏取引"]
+,[480+35,480+38,"I put the parcel under the table.","小包をテーブルの下に置いた。"]
+,[543,546,"Under the table is our catt's favorite sleeping place.","テーブルの下が、私たちのネコが寝るお気に入りの場所なんです。"]
+,[660+36.5,660+41,"The guy in the red sports car is a famous actor.","赤いスポーツカーに乗っている男の人は有名な俳優です。"]
+,[720+50,720+54,"With all due respect, I have to disagree with you.","失礼ながら、同意はできかねます。"]
+];
+
+const expresses = [
+[660+11,660+16,696.5,700.5]
+,[720+23,720+26,770,774]
+];
+		</script>
+	</head>
+	<body>
+		<video controls id="video" width="420" height="300">
+			<source src="oto/2019_05_30.mp4">
+		</video>
+		<h1>2019年5月30日(火)</h1>
+		<h2>CONVERSATION</h2>
+		<button onclick="setButtons(MODE_ENG);">英語</button> <button onclick="setButtons(MODE_JAP);">日本語</button><br>
+		<div id="conversation"></div>
+		<br><br>
+		<h2>VOCABULARY</h2>
+		<button onclick="setVocabularies(MODE_ENG);">英語</button> <button onclick="setVocabularies(MODE_JAP);">日本語</button><br>
+		<div id="vocabularies"></div>
+		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
+		<div id="express"></div>
+
+
+	</body>
+</html>
