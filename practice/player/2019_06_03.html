@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="application/javascript" src="main2.js"></script>
+		<script type="application/javascript">
+
+const names = ["Anna","Koichi"];
+const sentences = [
+ [80,1,"Koichi,","コウイチ"]
+,[81.5,1,"Sara and I are going out for lunch.","サラと私はランチに出かけるところよ。"]
+,[83.7,1,"Would you like to join us?","私たちと一緒に行かない？"]
+,[84.95,2,"Thanks, Anna,","ありがとう、アンナ。"]
+,[86.3,2,"but I already had lunch.","でも、もう僕はランチを済ませたんだ。"]
+,[88.5,1,"It's only 11:30.","まだ、11時半なのよ。"]
+,[90.5,2,"Yes,","ああ、"]
+,[91.2,2,"I skipped breakfast today ","今日は朝食抜きだったんだ。"]
+,[92.8,2,"because I woke up late.","寝坊してしまったからね。"]
+,[94.5,1,"So you didn't listen to your morning English conversation program?","じゃあ、朝の英会話番組を聞かなかったの？"]
+,[98.5,2,"Right.","そう。"]
+,[99.5,2,"I stayed up late watching internet videos.","インターネットの動画を見ていて遅くまで起きていたんだ。"]
+,[103,1,"What kind do you watch?","いつもどんな動画を見るの？"]
+,[105.2,2,"I usually watch cooking programs.","たいてい、料理番組を見るよ。"]
+,[108,1,"Hmm.","うーん、"]
+,[109,1,"You should stick to English conversation.","あなたは英会話に専念すべきよ。"]
+,[112.0]
+];
+
+const vocabularies = [
+[420+22,445,"I already had lunch.","私はもう昼食をとりました。"]
+,[480+18,480+20,"I made lunch.","お昼を作った。"]
+,[480+23,480+25,"I got lunch.","お昼ご飯を手に入れた。"]
+,[540+47,540+51,"I'll have this.Tomuyamukun,it's my favorite Thai food.","これにするよ。トムヤムクンはお気に入りのタイ料理だ。"]
+,[540+53,540+56,"I'll take this.It's a beautiful kimono.","これにするわ。きれいな着物ですね。"]
+];
+
+const expresses = [
+[600+51,600+59,660+16.5,660+21]
+,[720+53.5,720+57,780+15,780+17.5]
+];
+		</script>
+	</head>
+	<body>
+		<video controls id="video" width="420" height="300">
+			<source src="oto/2019_06_03.mp4">
+		</video>
+		<h1>2019年6月3日(月)</h1>
+		<h2>CONVERSATION</h2>
+		<button onclick="setButtons(MODE_ENG);">英語</button> <button onclick="setButtons(MODE_JAP);">日本語</button><br>
+		<div id="conversation"></div>
+		<br><br>
+		<h2>BUILD UP YOUR VOCABULARY</h2>
+		<button onclick="setVocabularies(MODE_ENG);">英語</button> <button onclick="setVocabularies(MODE_JAP);">日本語</button><br>
+		<div id="vocabularies"></div>
+		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
+		<div id="express"></div>
+		<br>
+		<a href="2019_05_30.html">前日</a>&nbsp;&nbsp;&nbsp;
+		<a href="2019_06_04.html">翌日</a>
+
+
+	</body>
+</html>

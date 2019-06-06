@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="application/javascript" src="main3.js"></script>
+		<script type="application/javascript">
+
+const names = ["Dad","Roxy"];
+const sentences = [
+// [,,"",""]
+//,[,,"",""]
+ [64,1,"Roxy!","ロキシー、"]
+,[65.5,1,"Dinner's ready!","夕飯が出来ているよ。"]
+,[67,2,"OK,I'm coming.","ええ、すぐ行くわ。"]
+,[69,2,"I'm in the middle of a text message.","携帯メールを書いているところなの。"]
+,[71.3,2,"...","(足音)"]
+,[73.5,1,"You shouldn't type and walk at the same time.","文字を打ち込みながら歩いちゃいけないよ。"]
+,[77,2,"I know.","わかっているわ。"]
+,[78.5,2,"Anyway,what's for dinner?","それで、夕食はなに？"]
+,[80.5,1,"Seafood paella.","シーフードパエリアだよ。"]
+,[82,2,"Again?","またなの？"]
+,[83.5,2,"Dad,","父さん、"]
+,[84.5,2," can't you learn some other recipes from your cookbook?","料理本から何か別の料理を覚えられないの？"]
+,[88,1,"The other recipes are kind of difficult.","ほかの料理は難しいんだ。"]
+,[91.5,2,"I'm not complaining.","わたし、文句を言っているんじゃないの。"]
+,[93,2,"It's always delicious,","いつもおいしいんだけど、"]
+,[94.4,2," but don't you get tired of making the same thing?","同じものを作ってばかりで飽きないの？"]
+,[98,1,"I like to master something before I move on.","何かをマスターしてから次に進みたいんだよ。"]
+,[102]
+];
+
+const vocabularies = [
+ [360+11,360+13.5,"It looks like it's about to go.","それ(その橋)は落ちてしまいそうだよ。"]
+,[84,85.3,"We can reach it easily if we go ovr that old bridge.","あの古い橋を渡れば簡単に行けるよ。"]
+,[85.3,87.5,"We can reach it easily if we go ovr that old bridge.","あの古い橋を渡れば簡単に行けるよ。"]
+,[105,106.7,"But if we keep fighting, we will get to our destination.","でも、頑張り続ければ、いつか目的地にたどり着くわ。"]
+,[106.7,109,"But if we keep fighting, we will get to our destination.","でも、頑張り続ければ、いつか目的地にたどり着くわ。"]
+,[360+37.5,360+41,"Let's go, or we'll be late.","もう行こうよ、そうしなければ遅れちゃうから。"]
+,[360+49,360+51,"The pain will go soon.","痛みはすぐに治まりますよ。"]
+,[420+13,420+15,"The engine is gone.","エンジンが壊れてしまった。"]
+,[420+47,420+49,"How is your new job going?","新しい仕事はどんな感じ？"]
+,[478.5,480,"How's it going?","調子はどうですか？"]
+];
+
+const expresses = [
+ [600+7,670,660+17,660+20]
+,[660+30.7,660+33,708.5,711]
+,[780+13,780+15.5,780+31.5,780+34]
+];
+		</script>
+	</head>
+	<body>
+		<video controls id="video" width="420" height="300">
+			<source src="oto/2019_06_06.mp4">
+		</video>
+		<h1>2019年6月6日(木)</h1>
+		<h2>CONVERSATION</h2>
+		<button onclick="setButtons();">言語切替</button>  <button onclick="clearInterval(hoge);eVideo.pause();">停止</button><br>
+		<div id="conversation"></div>
+		<br><br>
+		<h2>BUILD UP YOUR VOCABULARY</h2>
+		<button onclick="setVocabularies();">言語切替</button>  <button onclick="clearInterval(hoge);eVideo.pause();">停止</button><br>
+		<div id="vocabularies"></div>
+		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
+		<div id="express"></div>
+		<br>
+		<a href="2019_06_05.html">前日</a>&nbsp;&nbsp;&nbsp;
+		<a href="2019_06_07.html">翌日</a>
+
+
+	</body>
+</html>

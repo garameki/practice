@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="application/javascript" src="main2.js"></script>
+		<script type="application/javascript">
+
+const names = ["Miyuki","Duncan"];
+const sentences = [
+ [79,1,"This valley is so beautiful.","この谷はとても美しいわ。"]
+,[81.5,2,"Look at that castle over there!","あそこにある城を見てごらん！"]
+,[84,2,"We can reach it easily if we go over that old bridge.","あの古い橋を渡れば簡単に行けるよ。"]
+,[87.5,1,"No way!","とんでもないわ。"]
+,[89,1,"It looks like it's about to go.","今にも壊れそうよ。"]
+,[91,1,"We should hike down into the valley instead.","それよりも谷間で下りるべきよ。"]
+,[94,2,"We'll have to hike down and then climb up again.","下っていってから、また登りなおさないとならないよ。"]
+,[97.5,1,"But it will be worth it.","でも、それだけの価値はあるわ。"]
+,[99.5,1,"It's like life.","人生と同じことよ。"]
+,[101,2,"What do you mean?","何を言いたいの？"]
+,[103,1,"Life has its ups and downs.","人生には上り坂と下り坂があるのよ。"]
+,[105,1,"But if we keep fighting, we will get to our destination.","でも、頑張り続ければ、いつか目的地にたどり着くわ。"]
+,[109,2,"Hmm...","あぁ"]
+,[111]
+];
+
+const vocabularies = [
+ [360+11,360+13.5,"It looks like it's about to go.","それ(その橋)は落ちてしまいそうだよ。"]
+,[84,85.3,"We can reach it easily if we go ovr that old bridge.","あの古い橋を渡れば簡単に行けるよ。"]
+,[85.3,87.5,"We can reach it easily if we go ovr that old bridge.","あの古い橋を渡れば簡単に行けるよ。"]
+,[105,106.7,"But if we keep fighting, we will get to our destination.","でも、頑張り続ければ、いつか目的地にたどり着くわ。"]
+,[106.7,109,"But if we keep fighting, we will get to our destination.","でも、頑張り続ければ、いつか目的地にたどり着くわ。"]
+,[360+37.5,360+41,"Let's go, or we'll be late.","もう行こうよ、そうしなければ遅れちゃうから。"]
+,[360+49,360+51,"The pain will go soon.","痛みはすぐに治まりますよ。"]
+,[420+13,420+15,"The engine is gone.","エンジンが壊れてしまった。"]
+,[420+47,420+49,"How is your new job going?","新しい仕事はどんな感じ？"]
+,[478.5,480,"How's it going?","調子はどうですか？"]
+];
+
+const expresses = [
+ [600+7,670,660+17,660+20]
+,[660+30.7,660+33,708.5,711]
+,[780+13,780+15.5,780+31.5,780+34]
+];
+		</script>
+	</head>
+	<body>
+		<video controls id="video" width="420" height="300">
+			<source src="oto/2019_06_05.mp4">
+		</video>
+		<h1>2019年6月5日(水)</h1>
+		<h2>CONVERSATION</h2>
+		<button onclick="setButtons(MODE_ENG);">英語</button> <button onclick="setButtons(MODE_JAP);">日本語</button> <button onclick="clearInterval(hoge);eVideo.pause();">停止</button><br>
+		<div id="conversation"></div>
+		<br><br>
+		<h2>BUILD UP YOUR VOCABULARY</h2>
+		<button onclick="setVocabularies(MODE_ENG);">英語</button> <button onclick="setVocabularies(MODE_JAP);">日本語</button> <button onclick="clearInterval(hoge);eVideo.pause();">停止</button><br>
+		<div id="vocabularies"></div>
+		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
+		<div id="express"></div>
+		<br>
+		<a href="2019_06_04.html">前日</a>&nbsp;&nbsp;&nbsp;
+		<a href="2019_06_06.html">翌日</a>
+
+
+	</body>
+</html>

@@ -19,14 +19,33 @@ const TIME3A_E = 3; /* end time */
 let hoge = setInterval(function(){clearInterval(hoge);},1);
 let eVideo,eVocabularies,eConversation;
 
-function setButtons(mode) {
-	let LANG;
-	if(mode == MODE_ENG) LANG = ENG1;
-	else if(mode == MODE_JAP) LANG = JAP1;
+/* closure */
+function ChangeLanguage(modeInit) {
+	let mode;
+	if (modeInit == JAP1) mode = ENG1;
+	else if (modeInit == ENG1) mode = JAP1;
 	else {
-		console.error("Error in setButtons() mode = ",mode);
-		LANG = ENG1;
+		console.error('modeInit = ',modeInit,' in ChangeLanguage()');
 	}
+	mode = modeInit;
+	return function() {
+		if (mode == ENG1) mode = JAP1;
+		else if(mode == JAP1) mode = ENG1;
+		else {
+			console.error('mode = ',mode,' in ChangeLanguage');
+			mode = ENG1;
+		}
+		return mode;
+	};
+};
+
+
+const modeButtons = new ChangeLanguage(ENG1);
+function setButtons() {
+	let mode = modeButtons();
+	let LANG;
+	if(mode == ENG1) LANG = ENG1;
+	else LANG = JAP1;
 
 	const size = ["23","17"];
 	let sHtml = "<table>";
@@ -41,22 +60,21 @@ function setButtons(mode) {
 			nBeforePerson = pp;
 		}
 	//	sHtml += '<button style="font-size:' + size[mode-1] + 'px;" onclick="clearInterval(hoge);eVideo.currentTime='+sentences[ii][TIME1].toString()+';eVideo.play();hoge = setInterval(function() {clearInterval(hoge);eVideo.pause();},'+((sentences[ii+1][TIME1]-sentences[ii][TIME1])*1000).toString()+');">'+sentences[ii][LANG]+'</button>';
+	console.log("TIME1=",TIME1,"ii=",ii,"sentences=",sentences);
 		sHtml += '<button style="font-size:' + size[mode-1] + 'px;" onclick="clearInterval(hoge);eVideo.currentTime='+sentences[ii][TIME1].toString()+';eVideo.play();hoge = setInterval(function() {eVideo.currentTime='+sentences[ii][TIME1].toString()+';eVideo.play();},'+((sentences[ii+1][TIME1]-sentences[ii][TIME1])*1000).toString()+');">'+sentences[ii][LANG]+'</button>';
 	}
 	eConversation.innerHTML = sHtml;
 };
 
-function setVocabularies(mode) {
-	const size = ["23","17"];
-	let sHtml = "";
+const modeVocabularies = new ChangeLanguage(ENG1);
+function setVocabularies() {
+	let mode = modeVocabularies();
 	let LANG;
-	if(mode == MODE_ENG) LANG = ENG2;
-	else if(mode == MODE_JAP) LANG = JAP2;
-	else {
-		console.error("Error in setVocabularies() mode = ",mode);
-		LANG = ENG2;
-	}
+	if(mode == ENG1) LANG = ENG2;
+	else LANG = JAP2;
+	const size = ["23","17"];
 
+	let sHtml = "";
 	for(let ii=0;ii<vocabularies.length;ii++) {
 		//sHtml += '<button style="font-size:' + size[mode-1] + 'px;" onclick="clearInterval(hoge);eVideo.currentTime='+vocabularies[ii][TIME2_S].toString()+';eVideo.play();hoge = setInterval(function() {clearInterval(hoge);eVideo.pause();},'+((vocabularies[ii][TIME2_E]-vocabularies[ii][TIME2_S])*1000).toString()+');">'+vocabularies[ii][LANG]+'</button><br>';
 		sHtml += '<button style="font-size:' + size[mode-1] + 'px;" onclick="clearInterval(hoge);eVideo.currentTime='+vocabularies[ii][TIME2_S].toString()+';eVideo.play();hoge = setInterval(function() {eVideo.currentTime='+vocabularies[ii][TIME2_S].toString()+';eVideo.play();},'+((vocabularies[ii][TIME2_E]-vocabularies[ii][TIME2_S])*1000).toString()+');">'+vocabularies[ii][LANG]+'</button><br>';
