@@ -3,7 +3,26 @@
 <head>
 <title>勇者の終わりなき旅</title>
 <script type="application/javascript">
-let imgMigi = new Image();
+
+/* キー操作用 */
+let flagKeyDown = false;
+
+
+const SHITA = 7;
+const UE = 8;
+const MIGI = 9;
+const HIDARI = 10;
+
+const YAMA = 4;
+const UMI = 2;
+
+let chara_direct = SHITA;
+let chara_x = 5;
+let chara_y = 5;
+
+const map_width = 20;
+const map_height = 20;
+
 let imgTown = new Image();
 let imgNohara = new Image();
 let imgYama = new Image();
@@ -11,6 +30,10 @@ let imgUmi = new Image();
 let imgSabaku = new Image();
 let imgMori = new Image();
 let imgDoukutu = new Image();
+let imgShita = new Image();
+let imgUe = new Image();
+let imgMigi = new Image();
+let imgHidari = new Image();
 let ctx;
 
 
@@ -57,6 +80,26 @@ onload = function() {
 	imgDoukutu.onload = function() {
 		flagDoukutu = true;
 	};
+	let flagShita = false;
+	imgShita.src = "images/ffshita.png";
+	imgShita.onload = function() {
+		flagShita = true;
+	};
+	let flagUe = false;
+	imgUe.src = "images/ffue.png";
+	imgUe.onload = function() {
+		flagUe = true;
+	};
+	let flagMigi = false;
+	imgMigi.src = "images/ffmigi.png";
+	imgMigi.onload = function() {
+		flagMigi = true;
+	};
+	let flagHidari = false;
+	imgHidari.src = "images/ffhidari.png";
+	imgHidari.onload = function() {
+		flagHidari = true;
+	};
 	let hoge = setInterval(function(){
 		clearInterval(hoge);
 		if(flagMori && flagSabaku && flagTown && flagUmi && flagNohara && flagYama) {
@@ -70,16 +113,26 @@ onload = function() {
 
 function start() {
 	const map = [];
-	map.push([2,2,2,2,2,2,2,2,2,2]);
-	map.push([2,0,0,5,5,5,5,5,5,2]);
-	map.push([2,0,2,5,5,4,5,5,5,2]);
-	map.push([2,0,0,5,4,6,4,5,5,2]);
-	map.push([2,0,0,5,4,1,4,5,5,2]);
-	map.push([2,0,1,5,4,3,4,5,5,2]);
-	map.push([2,0,2,5,4,3,4,5,5,2]);
-	map.push([2,0,2,2,0,0,5,0,0,2]);
-	map.push([2,0,2,2,0,0,5,0,0,2]);
-	map.push([2,2,2,2,2,2,2,2,2,2]);
+	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
+	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
+	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
+	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
+	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
+	map.push([2,2,2,2,2,3,4,5,5,0,0,0,0,0,0,0,2,2,2,2]);
+	map.push([2,2,2,2,2,3,4,5,5,0,0,0,0,0,0,0,2,2,2,2]);
+	map.push([2,2,2,2,2,0,5,0,0,0,0,0,0,0,0,0,2,2,2,2]);
+	map.push([2,2,2,2,2,0,5,0,0,0,0,0,0,0,0,0,2,2,2,2]);
+	map.push([2,2,2,2,2,2,2,2,2,0,0,0,0,0,1,0,2,2,2,2]);
+	map.push([2,2,2,2,2,2,2,2,2,5,5,5,0,0,0,0,2,2,2,2]);
+	map.push([2,2,2,2,2,5,5,5,5,5,5,5,0,0,0,0,2,2,2,2]);
+	map.push([2,2,2,2,2,4,5,5,5,5,5,5,5,0,0,0,2,2,2,2]);
+	map.push([2,2,2,2,2,6,4,5,5,5,5,5,5,0,0,0,2,2,2,2]);
+	map.push([2,2,2,2,2,1,4,5,5,0,0,0,0,0,0,0,2,2,2,2]);
+	map.push([2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2]);
+	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
+	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
+	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
+	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
 	const images = [ ];
 	images.push(imgNohara);
 	images.push(imgTown);
@@ -88,11 +141,62 @@ function start() {
 	images.push(imgYama);
 	images.push(imgMori);
 	images.push(imgDoukutu);
-	for(let jj = 0;jj < 10;jj++) {
-		for(let ii = 0;ii < 10;ii++) {
-			ctx.drawImage(images[map[jj][ii]],64*ii,64*jj);
-		};
-	}
+	images.push(imgShita);
+	images.push(imgUe);
+	images.push(imgMigi);
+	images.push(imgHidari);
+
+
+
+	/* マップを描く */
+	const drawMap = function() {
+		for(let jj = 0;jj < 10;jj++) {
+			for(let ii = 0;ii < 10;ii++) {
+				ctx.drawImage(images[map[jj+chara_y-5][ii+chara_x-5]],64*ii,64*jj);
+			};
+		}
+	};
+	drawMap();
+	ctx.drawImage(images[chara_direct],64*5,64*5);
+	/* キャクターを描く */
+	document.addEventListener('keydown',(event) => {
+		if(flagKeyDown == false) {
+			let number = -1;
+			if(event.key == '2') {
+				number = SHITA;
+				if (chara_y+5<20 && map[chara_y+1][chara_x] != YAMA && map[chara_y+1][chara_x] != UMI) {
+					chara_y++;
+				}
+			}
+			if(event.key == '8') {
+				number = UE;
+				if (chara_y-5>0 && map[chara_y-1][chara_x] != YAMA && map[chara_y-1][chara_x] != UMI) {
+					chara_y--;
+				}
+			}
+			if(event.key == '6') {
+				number = MIGI;
+				if (chara_x+5<20 && map[chara_y][chara_x+1] != YAMA && map[chara_y][chara_x+1] != UMI) {
+					chara_x++;
+				}
+			}
+			if(event.key == '4') {
+				number = HIDARI;
+				if (chara_x-5>0 && map[chara_y][chara_x-1] != YAMA && map[chara_y][chara_x-1] != UMI) {
+					chara_x--;
+				}
+			}
+			if(number != -1){
+			drawMap();
+				 chara_direct = number;
+			}
+			ctx.drawImage(images[chara_direct],64*5,64*5);
+			flagKeyDown = true;
+		}
+	},false);
+	document.addEventListener('keyup',(event) => {
+		flagKeyDown = false;
+	},false);
 };
 </script>
 </body>
