@@ -15,6 +15,9 @@ const HIDARI = 10;
 
 const YAMA = 4;
 const UMI = 2;
+const IWA = 11;
+const UZU = 16;
+const NUMA = 19;
 
 let chara_direct = SHITA;
 let chara_x = 5;
@@ -34,14 +37,100 @@ let imgShita = new Image();
 let imgUe = new Image();
 let imgMigi = new Image();
 let imgHidari = new Image();
+let imgIwa = new Image();
+let imgKusa = new Image();
+let imgTownSabaku = new Image();
+let imgTouUe = new Image();
+let imgTouShita = new Image();
+let imgUzu = new Image();
+let imgFune = new Image();
+let imgVillage = new Image();
+let imgNuma = new Image();
+let imgShindenHidari = new Image();
+let imgShindenMigi = new Image();
+let imgShiroHidariUe = new Image();
+let imgShiroHidariShita = new Image();
+let imgShiroMigiUe = new Image();
+let imgShiroMigiShita = new Image();
 let ctx;
 
 
 
 onload = function() {
+	let flagShiroHidariUe = false;
+	imgShiroHidariUe.src = "images/ffshirohidariue.png";
+	imgShiroHidariUe.onload = function() {
+		flagShiroHidariUe = true;
+	};
+	let flagShiroHidariShita = false;
+	imgShiroHidariShita.src = "images/ffshirohidarishita.png";
+	imgShiroHidariShita.onload = function() {
+		flagShiroHidariShita = true;
+	};
+	let flagShiroMigiUe = false;
+	imgShiroMigiUe.src = "images/ffshiromigiue.png";
+	imgShiroMigiUe.onload = function() {
+		flagShiroMigiUe = true;
+	};
+	let flagShiroMigiShita = false;
+	imgShiroMigiShita.src = "images/ffshiromigishita.png";
+	imgShiroMigiShita.onload = function() {
+		flagShiroMigiShita = true;
+	};
+	let flagShindenHidari = false;
+	imgShindenHidari.src = "images/ffshindenhidari.png";
+	imgShindenHidari.onload = function() {
+		flagShindenHidari = true;
+	};
+	let flagShindenMigi = false;
+	imgShindenMigi.src = "images/ffshindenmigi.png";
+	imgShindenMigi.onload = function() {
+		flagShindenMigi = true;
+	};
+	let flagNuma = false;
+	imgNuma.src = "images/ffnuma.png";
+	imgNuma.onload = function() {
+		flagNuma = true;
+	};
+	let flagVillage = false;
+	imgVillage.src = "images/ffvillage.png";
+	imgVillage.onload = function() {
+		flagVillage = true;
+	};
+	let flagFune = false;
+	imgFune.src = "images/fffune.png";
+	imgFune.onload = function() {
+		flagFune = true;
+	};
+	let flagUzu = false;
+	imgUzu.src = "images/ffuzu.png";
+	imgUzu.onload = function() {
+		flagUzu = true;
+	};
+	let flagTouUe = false;
+	imgTouUe.src = "images/fftouue.png";
+	imgTouUe.onload = function() {
+		flagTouUe = true;
+	};
+	let flagTouShita = false;
+	imgTouShita.src = "images/fftoushita.png";
+	imgTouShita.onload = function() {
+		flagTouShita = true;
+	};
 	idField = document.getElementById('field');
 	idStatus = document.getElementById('status') ;
 	ctx = idField.getContext('2d');
+
+	let flagTownSabaku = false;
+	imgTownSabaku.src = "images/fftown_sabaku.png";
+	imgTownSabaku.onload = function() {
+		flagTownSabaku = true;
+	};
+	let flagKusa = false;
+	imgKusa.src = "images/ffkusa.png";
+	imgKusa.onload = function() {
+		flagKusa = true;
+	};
 	let flagTown = false;
 	imgTown.src = "images/fftown.png";
 	imgTown.onload = function() {
@@ -79,6 +168,11 @@ onload = function() {
 	imgDoukutu.src = "images/ffdoukutu.png";
 	imgDoukutu.onload = function() {
 		flagDoukutu = true;
+	};
+	let flagIwa = false;
+	imgIwa.src = "images/ffiwa.png";
+	imgIwa.onload = function() {
+		flagIwa = true;
 	};
 	let flagShita = false;
 	imgShita.src = "images/ffshita.png";
@@ -118,17 +212,17 @@ function start() {
 	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
 	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
 	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
-	map.push([2,2,2,2,2,3,4,5,5,0,0,0,0,0,0,0,2,2,2,2]);
-	map.push([2,2,2,2,2,3,4,5,5,0,0,0,0,0,0,0,2,2,2,2]);
-	map.push([2,2,2,2,2,0,5,0,0,0,0,0,0,0,0,0,2,2,2,2]);
-	map.push([2,2,2,2,2,0,5,0,0,0,0,0,0,0,0,0,2,2,2,2]);
-	map.push([2,2,2,2,2,2,2,2,2,0,0,0,0,0,1,0,2,2,2,2]);
-	map.push([2,2,2,2,2,2,2,2,2,5,5,5,0,0,0,0,2,2,2,2]);
-	map.push([2,2,2,2,2,5,5,5,5,5,5,5,0,0,0,0,2,2,2,2]);
-	map.push([2,2,2,2,2,4,5,5,5,5,5,5,5,0,0,0,2,2,2,2]);
-	map.push([2,2,2,2,2,6,4,5,5,5,5,5,5,0,0,0,2,2,2,2]);
-	map.push([2,2,2,2,2,1,4,5,5,0,0,0,0,0,0,0,2,2,2,2]);
-	map.push([2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2]);
+	map.push([2,2,2,2,2,1,0,5,5,5,5,5,4,4,4,4,2,2,2,2]);
+	map.push([2,2,2,2,2,0,5,5,5,5,5,5,5,4,6,4,2,2,2,2]);
+	map.push([2,2,2,2,2,0,2,2,2,2,2,2,5,4,0,4,2,2,2,2]);
+	map.push([2,2,2,2,2,16, 2,20,21, 2, 2, 2, 5, 4,19, 4,2,2,2,2]);
+	map.push([2,2,2,2,2,12, 2, 2, 2, 2,17, 2, 5, 4, 0, 4,2,2,2,2]);
+	map.push([2,2,2,2,2,12,12,12,12,14,12, 2, 5, 4,18, 4,2,2,2,2]);
+	map.push([2,2,2,2,2, 4, 4, 4,12,15,12, 2, 5, 4, 4, 4,2,2,2,2]);
+	map.push([2,2,2,2,2, 4, 6, 4,12,12,12, 2, 3, 3, 3, 4,2,2,2,2]);
+	map.push([2,2,2,2,2, 4, 3, 4, 4, 4, 4, 4, 3,22,24, 4,2,2,2,2]);
+	map.push([2,2,2,2,2, 4,11, 3, 3, 3, 3,11, 3,23,25, 4,2,2,2,2]);
+	map.push([2,2,2,2,2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,2,2,2,2]);
 	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
 	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
 	map.push([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
@@ -145,6 +239,21 @@ function start() {
 	images.push(imgUe);
 	images.push(imgMigi);
 	images.push(imgHidari);
+	images.push(imgIwa);
+	images.push(imgKusa);
+	images.push(imgTownSabaku);
+	images.push(imgTouUe);
+	images.push(imgTouShita);
+	images.push(imgUzu);
+	images.push(imgFune);
+	images.push(imgVillage);
+	images.push(imgNuma);
+	images.push(imgShindenHidari);
+	images.push(imgShindenMigi);
+	images.push(imgShiroHidariUe);
+	images.push(imgShiroHidariShita);
+	images.push(imgShiroMigiUe);
+	images.push(imgShiroMigiShita);
 
 
 
@@ -164,7 +273,7 @@ function start() {
 			let number = -1;
 			if(event.key == '2') {
 				number = SHITA;
-				if (chara_y+5<20 && map[chara_y+1][chara_x] != YAMA && map[chara_y+1][chara_x] != UMI) {
+				if (chara_y+5<20 && map[chara_y+1][chara_x] != YAMA && map[chara_y+1][chara_x] != UMI && map[chara_y+1][chara_x] != UZU) {
 					chara_y++;
 				}
 			}
@@ -182,7 +291,7 @@ function start() {
 			}
 			if(event.key == '4') {
 				number = HIDARI;
-				if (chara_x-5>0 && map[chara_y][chara_x-1] != YAMA && map[chara_y][chara_x-1] != UMI) {
+				if (chara_x-5>0 && map[chara_y][chara_x-1] != YAMA && map[chara_y][chara_x-1] != UMI && map[chara_y][chara_x-1] != IWA) {
 					chara_x--;
 				}
 			}
