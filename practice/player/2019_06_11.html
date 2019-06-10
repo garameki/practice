@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font-family:century;
+				display:inline-block;
+				background-color:white;
+				color:salmon;
+				letter-spacing:1px;
+				padding-top:5px;
+				padding-bottom:5px;
+				padding-left:20px;
+				padding-right:20px;
+			}
+			.funcButton {
+				background-color:skyblue;
+			}
+		</style>
+		<script type="application/javascript" src="main4.js"></script>
+		<script type="application/javascript">
+
+const names = ["Patrick","Sophie"];
+const sentences = [
+// [,,"",""]
+//,[,,"",""]
+ [16.9,1,"Hey,","ほら、"]
+,[18,1," look at this magazine.","この雑誌を見てごらん。"]
+,[19.5,1,"I know this guy.","この男性を知ってるよ。"]
+,[21.5,2,"Oh? Who is he?","まあ、誰なの？"]
+,[23,1,"He was a stuent of mine.","彼は私の生徒だったんだ。"]
+,[25.5,1,"He runs an Italian restaurant.","彼はイタリアンレストランを経営している。"]
+,[28,2,"He looks pretty stylish.","彼はとてもおしゃれに見えるわ。"]
+,[30.3,1,"Yes.","そう。"]
+,[31.2,1,"I remember he was a very popular student when I taught him English at junior high school.","中学校で英語を教えていた時、彼はとても人気のある生徒だったことを覚えている。"]
+,[37.8,2,"Where did you teach?","あなたはどこで教えていたの？"]
+,[39,1,"On an island called Sado.","佐渡と呼ばれるしまだよ。"]
+,[41,1,"That was a long time ago.","ずいぶん前のことだけどね。"]
+,[44,2,"Maybe you should visit his restaurant.","たぶん、あなたは彼のレストランに行ってみるべきね。"]
+,[46.5,1,"Yes, I definitely will!","ああ、もちろん行くよ。"]
+,[49]
+];
+
+const vocabularies = [
+// [,,"",""]
+//,[,,"",""]
+ [107,110,"I remember he was a very popular student ","彼はとても人気のある生徒だったことを覚えている。"]
+,[110.2,112.5," when I taught him English at junior high school.","中学校で英語を教えていた時、"]
+,[329,332,"He runs an Italian restaurant.","彼はイタリアンレストランを経営しています。"]
+,[410.5,413,"This road runs alng the river.","この道は川沿いを走っている。"]
+,[427,429,"Who left the tap running?","誰が水道を流しっぱなしにしたんだい？"]
+,[458.5,460.5,"The river has run dry.","川が干上がってしまった。"]
+,[471,474,"We've run out of ideas.","アイデアが枯渇してしまった。"]
+];
+
+const expresses = [
+/*
+ [,,,]
+,[,,,]
+*/
+ [558,564.5,620,625]
+,[636.5,640,661.5,664.5]
+,[716,719,734,737]
+];
+
+const words = [
+/*
+ [,,"",""]
+,[,,"",""]
+*/
+ [368.7,370,"run the engine","エンジンを動かす"]
+,[371.5,373,"run a program","プログラムを走らせる"]
+,[374.2,375.5,"run a meeting","ミーティングを仕切る"]
+,[29,30.2,"pretty stylish","とてもおしゃれな"]
+,[39.8,40.2,"island","島"]
+,[823.5,824.6,"my nose runs","鼻が垂れてくる"]
+];
+		</script>
+	</head>
+	<body>
+		<video controls id="video" width="420" height="300">
+			<source src="oto/2019_06_11.mp4">
+		</video>
+		<h1>2019年6月11日(火)</h1>
+		<h2>CONVERSATION</h2>
+		<br><button class="funcButton" onclick="setButtons();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
+		<div id="conversation"></div>
+		<br><br>
+		<h2>BUILD UP YOUR VOCABULARY</h2>
+		<br><button class="funcButton" onclick="setVocabularies();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
+		<div id="vocabularies"></div>
+		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
+		<div id="express"></div>
+		<h2>WORDS AND PHRASES</h2>
+		<div id="wordsans" style="letter-spacing:1px;font-family:serif;border:solid 2px;padding:30px;font-size:80px;font-weight:bold;">　</div>
+		<div id="words"></div>
+		<br><br><hr>
+		<center><a href="2019_06_10.html">前日</a>&nbsp;&nbsp;&nbsp;
+		<a href="2019_06_12.html">翌日</a>
+		</center>
+		<br><br><br>
+
+
+	</body>
+</html>
