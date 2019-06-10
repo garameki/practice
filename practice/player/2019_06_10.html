@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font-family:century;
+				display:inline-block;
+				background-color:white;
+				color:salmon;
+				letter-spacing:1px;
+				padding-top:5px;
+				padding-bottom:5px;
+				padding-left:20px;
+				padding-right:20px;
+			}
+			.funcButton {
+				background-color:skyblue;
+			}
+		</style>
+		<script type="application/javascript" src="main4.js"></script>
+		<script type="application/javascript">
+
+const names = ["Ken","Hiroko"];
+const sentences = [
+ [49,1,"Hi.","こんにちは。"]
+,[50,1,"This is my first time to have a palm reading.","僕は手相を見てもらうのは初めてなんです。"]
+,[53.5,2,"Just relax,sir.","ただリラックスしていてください。"]
+,[55.5,2,"Please put your palms face up.","手のひらを上に向けていただけますか。"]
+,[58.5,1,"What do you see?","何が見えますか？"]
+,[60,2,"You have a daughter.","あなたには娘さんがいらっしゃいますね。"]
+,[63.3,1,"Yes!","そうです！"]
+,[64.5,1,"How did you know that?","どうしてわかったのですか？"]
+,[66,2,"I can see many things.","私にはいろいろなことがわかります。"]
+,[68.5,2,"And she is a soccer player.","そして娘さんはサッカー選手ですね。"]
+,[72,1,"Amazing!","すごい！"]
+,[73.5,1,"What else can you tell me?","他に何かわかりますか？"]
+,[75.5,2,"She is going to play in a game tomorrow...","娘さんは明日の試合に出ることになっています..."]
+,[79,2," and her team will win.","そしてチームは勝つでしょう。"]
+,[81.7,1,"That's incredible.","それはすごい！"]
+,[83.5,1,"I hope your prediction comes true.","あなたの予言が現実になることを願っています。"]
+,[86.5]
+];
+
+const vocabularies = [
+ [360+19.5,360+22,"I hope your prediction comes true.","あなたの予言が当たることを願っています。"]
+,[417.5,420,"Everything will come right in the end.","最後には全てうまくいきますよ。"]
+,[432.5,435,"Everything went wrong.","何もかもうまくいかなかった。"]
+,[546,548.5,"Come on. You can do it.","いいかい。君ならできるさ。"]
+];
+
+const expresses = [
+// [,,,]
+//,[,,,]
+ [674,678.5,700,705]
+,[762,767,789.5,794]
+];
+
+const words = [
+// [,,"",""]
+//,[,,"",""]
+ [464.2,465.5,"go rotten","腐る"]
+,[466.8,467.8,"go crazy","気が変になる・とんでもないことになる"]
+,[481.3,482.3,"go bad","悪くなる"]
+,[487.3,488,"go bold","髪が薄くなる"]
+,[493.3,494,"go flat","(パフォーマンスなどが)つまらなくなる・タイヤがパンクする"]
+,[326.4,327,"palm reading","手相占い"]
+,[329.5,332,"face up","表向きにして"]
+,[84.9,85.6,"prediction","予言"]
+
+];
+		</script>
+	</head>
+	<body>
+		<video controls id="video" width="420" height="300">
+			<source src="oto/2019_06_10.mp4">
+		</video>
+		<h1>2019年6月10日(月)</h1>
+		<h2>CONVERSATION</h2>
+		<br><button class="funcButton" onclick="setButtons();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
+		<div id="conversation"></div>
+		<br><br>
+		<h2>BUILD UP YOUR VOCABULARY</h2>
+		<br><button class="funcButton" onclick="setVocabularies();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
+		<div id="vocabularies"></div>
+		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
+		<div id="express"></div>
+		<h2>WORDS AND PHRASES</h2>
+		<div id="wordsans" style="letter-spacing:1px;font-family:serif;border:solid 2px;padding:30px;font-size:80px;font-weight:bold;">　</div>
+		<div id="words"></div>
+		<br><br><hr>
+		<center><a href="2019_06_07.html">先週末</a>&nbsp;&nbsp;&nbsp;
+		<a href="2019_06_11.html">翌日</a>
+		</center>
+		<br><br><br>
+
+
+	</body>
+</html>
