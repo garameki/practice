@@ -11,11 +11,6 @@ const TIME2_S = 0; /* start time */
 const TIME2_E = 1; /* end time */
 const ENG2 = 2;
 const JAP2 = 3;
-/* for Express */
-const TIME3Q_S = 0; /* start time */
-const TIME3Q_E = 1; /* end time */
-const TIME3A_S = 2; /* start time */
-const TIME3A_E = 3; /* end time */
 let hoge = setInterval(function(){clearInterval(hoge);},1);
 let eVideo,eVocabularies,eConversation;
 
@@ -83,12 +78,18 @@ function setVocabularies() {
 };
 
 
+/* for Express */
+const TIME3Q_S = 0; /* start time */
+const TIME3Q_E = 1; /* end time */
+const TIME3A_S = 2; /* start time */
+const TIME3A_E = 3; /* end time */
 function setExpress(element) {
 	let sHtml = "";
 
 	for(let ii=0;ii<expresses.length;ii++) {
 		sHtml += '<button onclick="clearInterval(hoge);eVideo.currentTime='+expresses[ii][TIME3Q_S].toString()+';eVideo.play();hoge = setInterval(function() {clearInterval(hoge);eVideo.pause();},'+((expresses[ii][TIME3Q_E]-expresses[ii][TIME3Q_S])*1000).toString()+');">Question No.' + (ii+1).toString() + '</button> ';
-		sHtml += '<button onclick="clearInterval(hoge);eVideo.currentTime='+expresses[ii][TIME3A_S].toString()+';eVideo.play();hoge = setInterval(function() {clearInterval(hoge);eVideo.pause();},'+((expresses[ii][TIME3A_E]-expresses[ii][TIME3A_S])*1000).toString()+');">Answer</button><br>';
+//		sHtml += '<button onclick="clearInterval(hoge);eVideo.currentTime='+expresses[ii][TIME3A_S].toString()+';eVideo.play();hoge = setInterval(function() {clearInterval(hoge);eVideo.pause();},'+((expresses[ii][TIME3A_E]-expresses[ii][TIME3A_S])*1000).toString()+');">Answer</button><br>';
+		sHtml += '<button onclick="clearInterval(hoge);eVideo.currentTime='+expresses[ii][TIME3A_S].toString()+';eVideo.play();hoge = setInterval(function() {eVideo.currentTime='+expresses[ii][TIME3A_S].toString()+';eVideo.play();},'+((expresses[ii][TIME3A_E]-expresses[ii][TIME3A_S])*1000).toString()+');">Answer</button><br>';
 	}
 	element.innerHTML = sHtml;
 };
