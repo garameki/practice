@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font-family:century;
+				display:inline-block;
+				background-color:white;
+				color:salmon;
+				letter-spacing:1px;
+				padding-top:5px;
+				padding-bottom:5px;
+				padding-left:20px;
+				padding-right:20px;
+			}
+			.funcButton {
+				background-color:skyblue;
+			}
+			#wordsans {
+				letter-spacing:1px;
+				font-family:serif;
+				border:solid 2px;
+				padding:30px;
+				font-size:80px;
+				font-weight:bold;
+			}
+			.grammar_comment {
+				font-size:20px;
+				border:solid 1px black;
+				padding-right:5px;
+				padding-left:5px;
+			}
+			.grammar {
+				font-size:40px;
+				border-top:dashed 1px black;
+				border-bottom:dashed 1px black;
+				margin-left:30px;
+			}
+			.grammar_inner {
+				color:red;
+				font-size:50px;
+			}
+		</style>
+		<script type="application/javascript" src="main5.js"></script>
+		<script type="application/javascript">
+const date_before = new Date('2019/6/14');
+const date_today = new Date('2019/6/17');
+const date_after = new Date('2019/6/18');
+const names = ["DJ Sal","Shelly"];
+const sentences = [
+/*
+ [,,"",""]
+,[,,"",""]
+,[]
+*/
+ [58,1,"Welcome to \"Radio Chat Today.\"","「ラジオ・チャット・トゥデイ」にようこそ。"]
+,[62.5,1,"I'll take the next caller.","次の電話の方をお迎えします。"]
+,[64.5,2,"Hello, Sal.","もしもし、サル。"]
+,[66,2,"My name is Shelly.","私の名前はシェリーです。"]
+,[67.5,2,"I love your show.","あなたの番組が大好きなんです。"]
+,[69.5,1,"Thanks, Shelly.","ありがとう、シェリー"]
+,[71,1,"How can I help you?","どんなご相談でしょうか？"]
+,[72.5,2,"My boyfriend is driving me crazy.","私、ボーイフレンドに頭にきているんです。"]
+,[75.5,1,"Oh, in what way?","おや、どういうわけで？"]
+,[77.8,2,"Well, he always looking at cute girls, even when I'm with him.","ええと、彼は私が一緒にいるときでも、いつもかわいい女の子のほうばかり見ているんです。"]
+,[83,1,"Oh, that's not good.","ああ、それはよくありませんね。"]
+,[85.5,1,"I think it's time you broke yp with him.","あなたは彼と別れるべきときだと思いますよ。"]
+,[89,2,"I guess you're right.","たぶん、あなたの言うとおりね。"]
+,[91,2,"There are plenty more fish in the sea, right?","いい人は他にいくらでもいますよね？"]
+,[93.5,1,"Right. Good luck!","そのとおりです。幸運を祈ります。"]
+,[96]
+];
+
+const vocabularies = [
+/*
+ [,,"",""]
+,[,,"",""]
+*/
+ [399,401.7,"My boyfriend is driving me crazy.","私の彼にはイライラさせられます。"]
+,[476.5,479.8,"We drove the tent pegs into the hard ground.","テントのペグを固い地面に打ち込んだ。"]
+,[494,498.3,"Driven by jealousy, Othello killed Desdemona.","嫉妬につきうごかされてオセロはデステモーナを殺した。"]
+,[533.1,537.2,"A wife's constant nagging is enough to drive anyone to drink!","いつも妻にグチグチ言われたら誰だって飲みたくなるさ。"]
+];
+
+const expresses = [
+/*
+ [,,,]
+,[,,,]
+*/
+ [651,657,673.5,677]
+,[715,736,753.9,759]
+];
+
+const words = [
+/*
+ [,,"",""]
+,[,,"",""]
+*/
+ [803.1,817,"launch","(商売を)始める"]
+,[544.2,545,"nag","グチグチ言う"]
+,[576.5,580.5,"ask (person) to (do)","(人)に～するように頼む"]
+,[573,577,"tell (person) to (do)","(人)に～するように言う"]
+,[580.5,584.8,"force (person) to (do)","(人)に～するように強制する"]
+,[681.5,690,"nuts","正気ではない"]
+];
+		</script>
+	</head>
+	<body>
+		<h1 id="htitle"></h1>
+		<h2>CONVERSATION</h2>
+		<br><button class="funcButton" onclick="setButtons();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
+		<div id="conversation"></div>
+		<br><br>
+
+
+
+
+		<h2>CHECK YOUR GRAMMAR!</h2><br>
+		<button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button> <button class="funcButton" onclick="clearInterval(hoge);eVideo.play();">再生</button><br><br>
+		<span class="grammar_comment">it's time ...の仮定法</span><br>
+		<span class="grammar" onclick="eVideo.currentTime=261;eVideo.play();">I think it's time you <span class="grammar_inner">broke</span> up with him.</span>
+		<br><br>
+		<span class="grammar_comment">誰もが知っているフレーズはなるべく多くおぼえる</span><br>
+		<span class="grammar" onclick="eVideo.currentTime=316;eVideo.play();">There are <span class="grammer_inner">plenty</span> more fish in the sea, right?</span>
+		<br><br>
+
+
+
+		<h2>BUILD UP YOUR VOCABULARY</h2>
+		<br><button class="funcButton" onclick="setVocabularies();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
+		<div id="vocabularies"></div>
+		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
+		<br><button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
+		<div id="express"></div>
+		<h2>WORDS AND PHRASES</h2>
+		<div id="wordsans">　</div>
+		<div id="words"></div>
+		<br><br><hr>
+		<center><a id="before">前日</a>&nbsp;&nbsp;&nbsp;<a id="after">翌日</a>
+		</center>
+		<br><br><br>
+
+
+	</body>
+</html>

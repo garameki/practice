@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font-family:century;
+				display:inline-block;
+				background-color:white;
+				color:salmon;
+				letter-spacing:1px;
+				padding-top:5px;
+				padding-bottom:5px;
+				padding-left:20px;
+				padding-right:20px;
+			}
+			.funcButton {
+				background-color:skyblue;
+			}
+			#wordsans {
+				letter-spacing:1px;
+				font-family:serif;
+				border:solid 2px;
+				padding:30px;
+				font-size:80px;
+				font-weight:bold;
+			}
+			.grammar_comment {
+				font-size:20px;
+				border:solid 1px black;
+				padding-right:5px;
+				padding-left:5px;
+			}
+			.grammar {
+				font-size:40px;
+				border-top:dashed 1px black;
+				border-bottom:dashed 1px black;
+				margin-left:30px;
+			}
+			.grammar_inner {
+				color:red;
+				font-size:50px;
+			}
+		</style>
+		<script type="application/javascript" src="main5.js"></script>
+		<script type="application/javascript">
+const date_before = new Date('2019/6/17');
+const date_today = new Date('2019/6/18');
+const date_after = new Date('2019/6/19');
+const names = ["Aya","Ben"];
+const sentences = [
+/*
+ [,,"",""]
+,[,,"",""]
+,[]
+*/
+ [60.5,1,"Our wdding starts in two hours.","私たちの結婚式は2時間後に始まるのよ。"]
+,[62.7,1,"Most of the guests have already arrived.","ほとんどの招待客はもう到着してるわ。"]
+,[65,2,"You look beautiful.","君は綺麗だよ。"]
+,[67,1,"Thanks.","ありがとう。"]
+,[68.4,1,"I'm so nurvous.","わたし、とても緊張しているの。"]
+,[70,2,"Don't worry. We will be fine.","心配しないで。僕たちは大丈夫さ。"]
+,[73,1,"I hope so.","そう願うわ。"]
+,[74.5,1,"OK, where are the wedding rings?","さて、結婚指輪はどこにあるの？"]
+,[77.5,2,"The rings?","指輪だって？"]
+,[79,2,"I thought you brought them.","僕は君が持ってきたのかと思ってたけど。"]
+,[82,1,"What?","なんですって？"]
+,[83,1,"Didn't I tell you to put them in my bag?","あなたに指輪を私のバッグに入れるようにいわなかった？"]
+,[84,1,"Didn't I tell you to put them in my bag?","あなたに指輪を私のバッグに入れるようにいわなかった？"]
+,[85.4,2,"Yes...","そうだった。"]
+,[87.3,2,"I'm sorry, I forgot.","ごめん、忘れていたよ。"]
+,[89.5,1,"We can't get married without the rings.","私たち、結婚指輪がないと結婚できないわ。"]
+,[92.5,2,"Maybe we can borrow some.","たぶん、借りられるかもしれない。"]
+,[95,1,"What?","なんですって！"]
+,[96]
+];
+
+const vocabularies = [
+/*
+ [,,"",""]
+,[,,"",""]
+*/
+ [436,439,"Most of the guests have already arrived.","ほとんどの招待客はもう到着しているわ。"]
+,[529,533,"We should reach the hotel by 6:30.","ホテルに6時30分までには着くはずです。(reach)"]
+/*,[528,532,"We should arrive at the hotel by 6:30.","ホテルに6時30分までには着くはずです。(arrive)"]*/
+,[556,559,"Has the jury reached a verdict?","陪審は評決に至りましたか？"]
+,[570.5,572.5,"Where can I reach you?","連絡先を教えてもらえますか？"]
+];
+
+const expresses = [
+/*
+ [,,,]
+,[,,,]
+*/
+ [634,655,673.5,679]
+,[763,777.5,789.2,791.7]
+];
+
+const words = [
+/*
+ [,,"",""]
+,[,,"",""]
+*/
+ [147,150,"nervous","緊張して(adjective)"]
+,[226,231,"borrow","(一時的に)借りる"]
+,[705.1,713.8,"famished","ものすごく腹ペコ"]
+,[721,722,"starving","腹ペコ"]
+,[750,751,"exhausted","疲れ果てて"]
+,[641.8,643,"destination","目的地"]
+,[218,221,"get married","結婚する"]
+];
+		</script>
+	</head>
+	<body>
+		<h1 id="htitle"></h1>
+		<h2>CONVERSATION</h2>
+		<br><button class="funcButton" onclick="setButtons();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
+		<div id="conversation"></div>
+		<br><br>
+
+
+
+
+		<h2>CHECK YOUR GRAMMAR!</h2><br>
+		<button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button> <button class="funcButton" onclick="clearInterval(hoge);eVideo.play();">再生</button><br><br>
+		<span class="grammar_comment">未来を表す現在形</span><br>
+		<span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=275;eVideo.play();">Our wedding <span class="grammar_inner">starts</span> in two hours.</span><br>
+		<span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=309.5;eVideo.play();">(1)I <span class="grammar_inner">leave</span> for London in July.</span><br>
+		<span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=354.7;eVideo.play();">(2)I<span class="grammar_inner">'m leaving</span> for London in July.</span><br>
+		<span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=369;eVideo.play();">(3)I<span class="grammar_inner">'m going to leave</span> for London in July.</span><br>
+		<br><br>
+
+
+
+		<h2>BUILD UP YOUR VOCABULARY</h2>
+		<br><button class="funcButton" onclick="setVocabularies();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
+		<div id="vocabularies"></div>
+		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
+		<br><button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
+		<div id="express"></div>
+		<h2>WORDS AND PHRASES</h2>
+		<div id="wordsans">　</div>
+		<div id="words"></div>
+		<br><br><hr>
+		<center><a id="before">前日</a>&nbsp;&nbsp;&nbsp;<a id="after">翌日</a>
+		</center>
+		<br><br><br>
+
+
+	</body>
+</html>

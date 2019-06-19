@@ -103,7 +103,7 @@ const TIME4_E = 1;
 function setWords(element) {
 	let sHtml = "";
 	for(let ii=0;ii<words.length;ii++) {
-	console.log(words[ii]);
+		//console.log(words[ii]);
 		sHtml += '<button style="font-size:25px;" onmouseup="eWordsAns.innerHTML=\'　\';clearInterval(hoge);eVideo.pause();" onmousedown="eWordsAns.innerHTML=\''+words[ii][ENG4]+'\';clearInterval(hoge);eVideo.currentTime='+words[ii][TIME4_S].toString()+';eVideo.play();hoge=setInterval(()=>{clearInterval(hoge);eVideo.pause();},'+((words[ii][TIME4_E]-words[ii][TIME4_S])*1000).toString()+');">'+words[ii][JAP4]+'</button><br>';
 	}
 	element.innerHTML = sHtml;
