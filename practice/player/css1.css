@@ -9,8 +9,17 @@ h2 {
 	padding-left:20px;
 	padding-right:20px;
 }
+button {
+	white-space:nowrap;
+	font-weight:normal;
+	font-family:serif;
+}
 .funcButton {
 	background-color:skyblue;
+}
+.phrase {
+		border:solid 0px white;
+		background-color:white;
 }
 #wordsans {
 	letter-spacing:1px;
@@ -26,13 +35,30 @@ h2 {
 	padding-right:5px;
 	padding-left:5px;
 }
-.grammar {
-	font-size:40px;
+.grammar_div {
+	margin-top:10px;
+	padding-top:10px;
+	padding-bottom:10px;
 	border-top:dashed 1px black;
 	border-bottom:dashed 1px black;
+}
+.grammar {
+	font-size:40px;
 	margin-left:30px;
 }
 .grammar_inner {
 	color:red;
 	font-size:50px;
+}
+.gKasen {
+	border-bottom:solid 3px black;
+	margin-bottom:1px;
+}
+.gKyouchou {
+	font-weight:900;
+}
+.gAmikake {
+	background-color:lightgray;
+	padding-left:5px;
+	padding-right:5px;
 }

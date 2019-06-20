@@ -13,22 +13,6 @@ var inherits = function(childCtor, parentCtor) {
 
 
 
-/* for mode */
-const MODE_ENG = 1;
-const MODE_JAP = 2;
-/* for Canvasation */
-const TIME1 = 0;
-const PERSON1 = 1;
-const ENG1 = 2;
-const JAP1 = 3;
-/* for Vocabularies */
-const TIME2_S = 0; /* start time */
-const TIME2_E = 1; /* end time */
-const ENG2 = 2;
-const JAP2 = 3;
-
-
-
 
 let hoge = setInterval(function(){clearInterval(hoge);},1);
 let eVideo = void 0;
@@ -37,23 +21,24 @@ let eWordsAns = void 0;/*答えを描きこむエレメント onclickに埋め�
 
 
 /*言語の切り替え用クロージャ*/
-/* ENG1とJAP1を使っています。*/
-function ChangeLanguage(modeInit) {
-	let mode;
-	if (modeInit == JAP1) mode = ENG1;
-	else if (modeInit == ENG1) mode = JAP1;
-	else {
-		console.error('modeInit = ',modeInit,' in ChangeLanguage()');
-	}
-	mode = modeInit;
-	return function() {
-		if (mode == ENG1) mode = JAP1;
-		else if(mode == JAP1) mode = ENG1;
-		else {
-			console.error('mode = ',mode,' in ChangeLanguage');
-			mode = ENG1;
-		}
-		return mode;
+function manageLang() {
+	const ENG = 0;
+	const JAP = 1;
+	let mode = ENG;
+	return {
+		initialize:function(modeInit) {
+			/*言語指定を初期化*/
+			mode = modeInit;
+			if (mode != JAP && mode != ENG) console.error('modeInit = ',modeInit,' in ChangeLanguage()');
+		},
+		change:function() {
+			/*言語の切替*/
+			if (mode == ENG) mode = JAP;
+			else if(mode == JAP) mode = ENG;
+			return mode;
+		},
+		ENGLISH:ENG,
+		JAPANESE:JAP
 	};
 };
 
@@ -66,22 +51,34 @@ function ChangeLanguage(modeInit) {
 
 
 const ClsButtons = function (sVariable,elementVideo,elementButton,contents) {
-	this.changeLang = new ChangeLanguage(ENG1);
-	this.switchLang();/*初期化 言語は入れ替わる*/
+	this.oLang = new manageLang();/*closure オブジェクト返します*/
+	this.oLang.initialize(this.oLang.ENGLISH);
+	this.switchLang();/*this.lang , this.size の初期化*/
 	this.elementB = elementButton;
 	this.elementV = elementVideo;
 	this.contents = contents;
 	this.sVariable = sVariable;
-	this.numFocus = 0;
+	this.numFocus = 0;/*ボタンの内でフォーカスを受けているものの番号 onfocus時に番号をここに格納する*/
 };
 ClsButtons.prototype.numForcus = 0;/*フォーカスされているボタン*/
 ClsButtons.prototype.switchLang = function() {
-	if(this.changeLang() == ENG1) {
+	/**
+		prototype.switchLang()の使用について
+
+		初期化しておくもの
+			this.ENG...配列this.contentsにおける英文の場所
+			this.JAP...配列this.contentsにおける日本語の場所
+
+		切り替わるもの
+			this.size...文字の大きさ
+			this.lang...使われている言語
+	**/
+	if(this.oLang.change() == this.oLang.ENGLISH) {
 		this.size = 22;
-		this.lang = ENG1;
+		this.lang = this.ENG;
 	} else {
 		this.size = 22;
-		this.lang = JAP1;
+		this.lang = this.JAP;
 	}
 };
 ClsButtons.prototype.swDraw = function() {
@@ -98,6 +95,11 @@ ClsButtons.prototype.draw = function() {
 
 /*ClsButtonsを継承*/
 const ClsConversations2 = function (sVariable,elementVideo,elementButton,contents) {
+	this.TIME = 0;
+	this.PERSON = 1;
+	this.ENG = 2;
+	this.JAP = 3;
+
 	ClsButtons.call(this,sVariable,elementVideo,elementButton,contents);
 };
 inherits(ClsConversations2,ClsButtons);
@@ -106,99 +108,52 @@ ClsConversations2.prototype.draw = function() {
 	sHtml += "<table>";
 	let nBeforePerson = 0;
 	for(let ii=0;ii<this.contents.length-1;ii++) {
-		let pp = this.contents[ii][PERSON1];
+		let pp = this.contents[ii][this.PERSON];
 		if(nBeforePerson != pp) {
 			if(nBeforePerson != 0) {
 				sHtml += "</td></tr>"
 			}
-			sHtml += '<tr><td valign="top"><span style="font-weight:900;">' + htmlNames[pp-1] + '</span>:</td><td>';
+			sHtml += '<tr><td valign="top" style="padding-top:9px;"><span style="font-weight:900;">' + htmlNames[pp-1] + '</span>:</td><td>';
 			nBeforePerson = pp;
 		}
-		sHtml += '<button id="'+this.sVariable+ii.toString()+'"style="border:solid 0px white;background-color:white;font-size:' + this.size + 'px;" onfocus="'+this.sVariable+'.numFocus='+ii+';" onclick="clearInterval(hoge);'+this.sVariable+'.elementV.currentTime='+this.contents[ii][TIME1].toString()+';'+this.sVariable+'.elementV.play();hoge = setInterval(function() {'+this.sVariable+'.elementV.currentTime='+this.contents[ii][TIME1].toString()+';'+this.sVariable+'.elementV.play();},'+((this.contents[ii+1][TIME1]-this.contents[ii][TIME1])*1000).toString()+');">'+this.contents[ii][this.lang]+'</button><br>';
+		sHtml += '<button class~"phrase" id="'+this.sVariable+ii.toString()+'" style="border:solid 0px white;background-color:white;font-size:' + this.size + 'px;" onfocus="'+this.sVariable+'.numFocus='+ii+';" onclick="clearInterval(hoge);'+this.sVariable+'.elementV.currentTime='+this.contents[ii][this.TIME].toString()+';'+this.sVariable+'.elementV.play();hoge = setInterval(function() {'+this.sVariable+'.elementV.currentTime='+this.contents[ii][this.TIME].toString()+';'+this.sVariable+'.elementV.play();},'+((this.contents[ii+1][this.TIME]-this.contents[ii][this.TIME])*1000).toString()+');">'+this.contents[ii][this.lang]+'</button><br>';
 	}
 	sHtml += '</table>';
 
 	sHtml += '<br><button class="funcButton" onclick="'+this.sVariable+'.swDraw();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>';
 	this.elementB.innerHTML = sHtml;
-	console.log(this.sVariable+this.numFocus.toString(),888);
-	document.getElementById(this.sVariable+this.numFocus.toString()).focus();
+	if(this.contents.length !=0) document.getElementById(this.sVariable+this.numFocus.toString()).focus();
 };
 
 
 
-const ClsConversations = function (sVariable,elementVideo,elementButton,contents) {
-	this.changeLang = new ChangeLanguage(ENG1);
-	this.switchLang();/*初期化 言語は入れ替わる*/
-	this.elementB = elementButton;
-	this.elementV = elementVideo;
-	this.contents = contents;
-	this.sVariable = sVariable;
-	this.numFocus = 0;
+/*ClsButtonsクラスから継承*/
+const ClsVocabularies = function (sVariable,elementVideo,elementButton,contents) {
+	/*配列における場所*/
+	this.TIME_S = 0;
+	this.TIME_E = 1;
+	this.ENG = 2;
+	this.JAP = 3;
+
+	ClsButtons.call(this,sVariable,elementVideo,elementButton,contents);
 };
-ClsConversations.prototype.numForcus = 0;/*フォーカスされているボタン*/
-ClsConversations.prototype.switchLang = function() {
-	if(this.changeLang() == ENG1) {
-		this.size = 22;
-		this.lang = ENG1;
-	} else {
-		this.size = 22;
-		this.lang = JAP1;
-	}
-};
-ClsConversations.prototype.swDraw = function() {
-	this.switchLang();
-	this.draw();
-};
-ClsConversations.prototype.draw = function() {
+inherits(ClsVocabularies,ClsButtons);
+ClsVocabularies.prototype.draw = function() {
+
 	let sHtml = '<br><button class="funcButton" onclick="'+this.sVariable+'.swDraw();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>';
-	sHtml += "<table>";
-	let nBeforePerson = 0;
-	for(let ii=0;ii<this.contents.length-1;ii++) {
-		let pp = this.contents[ii][PERSON1];
-		if(nBeforePerson != pp) {
-			if(nBeforePerson != 0) {
-				sHtml += "</td></tr>"
-			}
-			sHtml += '<tr><td valign="top"><span style="font-weight:900;">' + htmlNames[pp-1] + '</span>:</td><td>';
-			nBeforePerson = pp;
-		}
-		sHtml += '<button id="'+this.sVariable+ii.toString()+'"style="border:solid 0px white;background-color:white;font-size:' + this.size + 'px;" onfocus="'+this.sVariable+'.numFocus='+ii+';" onclick="clearInterval(hoge);'+this.sVariable+'.elementV.currentTime='+this.contents[ii][TIME1].toString()+';'+this.sVariable+'.elementV.play();hoge = setInterval(function() {'+this.sVariable+'.elementV.currentTime='+this.contents[ii][TIME1].toString()+';'+this.sVariable+'.elementV.play();},'+((this.contents[ii+1][TIME1]-this.contents[ii][TIME1])*1000).toString()+');">'+this.contents[ii][this.lang]+'</button><br>';
+	for(let ii=0;ii<this.contents.length;ii++) {
+		sHtml += '<button class="phrase" id="'+this.sVariable+ii.toString()+'" style="font-size:' + this.size + 'px;" onfocus="'+this.sVariable+'.numFocus='+ii+';"  onclick="clearInterval(hoge);'+this.sVariable+'.elementV.currentTime='+this.contents[ii][this.TIME_S].toString()+';'+this.sVariable+'.elementV.play();hoge = setInterval(function() {'+this.sVariable+'.elementV.currentTime='+this.contents[ii][this.TIME_S].toString()+';'+this.sVariable+'.elementV.play();},'+((this.contents[ii][this.TIME_E]-this.contents[ii][this.TIME_S])*1000).toString()+');">'+this.contents[ii][this.lang]+'</button><br>';
 	}
-	sHtml += '</table>';
-
 	sHtml += '<br><button class="funcButton" onclick="'+this.sVariable+'.swDraw();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>';
 	this.elementB.innerHTML = sHtml;
-	console.log(this.sVariable+this.numFocus.toString(),888);
-	document.getElementById(this.sVariable+this.numFocus.toString()).focus();
+//	const hogeVoc = setInterval(()=>{clearInterval(hogeVoc);document.getElementById(this.sVariable+this.numFocus.toString()).focus()},1000);
+	console.log(this.sVariable+this.numFocus.toString(),5252);
+	if(this.contents.length!=0) document.getElementById(this.sVariable+this.numFocus.toString()).focus();
+
+
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-const modeVocabularies = new ChangeLanguage(ENG1);
-function setVocabularies(element) {
-	let mode = modeVocabularies();
-	let LANG;
-	if(mode == ENG1) LANG = ENG2;
-	else LANG = JAP2;
-	const size = ["23","17"];
-
-	let sHtml = "";
-	for(let ii=0;ii<htmlVocabularies.length;ii++) {
-		sHtml += '<button style="font-size:' + size[mode-1] + 'px;" onclick="clearInterval(hoge);eVideo.currentTime='+htmlVocabularies[ii][TIME2_S].toString()+';eVideo.play();hoge = setInterval(function() {eVideo.currentTime='+htmlVocabularies[ii][TIME2_S].toString()+';eVideo.play();},'+((htmlVocabularies[ii][TIME2_E]-htmlVocabularies[ii][TIME2_S])*1000).toString()+');">'+htmlVocabularies[ii][LANG]+'</button><br>';
-	}
-	element.innerHTML = sHtml;
-};
 
 
 /* for Express */
@@ -206,6 +161,45 @@ const TIME3Q_S = 0; /* start time */
 const TIME3Q_E = 1; /* end time */
 const TIME3A_S = 2; /* start time */
 const TIME3A_E = 3; /* end time */
+/*ClsButtonsクラスから継承*/
+const ClsExpresses = function (sVariable,elementVideo,elementButton,contents) {
+	/*配列における場所*/
+	this.TIMEQ_S = 0;
+	this.TIMEQ_E = 1;
+	this.TIMEA_S = 2;
+	this.TIMEA_E = 3;
+	this.ENG = 4;
+
+	ClsButtons.call(this,sVariable,elementVideo,elementButton,contents);
+};
+inherits(ClsExpresses,ClsButtons);
+ClsExpresses.prototype.draw = function() {
+
+	let sHtml = "";
+	for(let ii=0;ii<this.contents.length;ii++) {
+		sHtml += '<button onclick="clearInterval(hoge);'+this.sVariable+'.elementV.currentTime='+this.contents[ii][this.TIMEQ_S].toString()+';'+this.sVariable+'.elementV.play();hoge = setInterval(function() {clearInterval(hoge);'+this.sVariable+'.elementV.pause();},'+((this.contents[ii][this.TIMEQ_E]-this.contents[ii][this.TIMEQ_S])*1000).toString()+');">Question No.' + (ii+1).toString() + '</button> ';
+		sHtml += '<button onclick="clearInterval(hoge);'+this.sVariable+'.elementV.currentTime='+this.contents[ii][this.TIMEA_S].toString()+';'+this.sVariable+'.elementV.play();hoge = setInterval(function() {'+this.sVariable+'.elementV.currentTime='+this.contents[ii][this.TIMEA_S].toString()+';'+this.sVariable+'.elementV.play();},'+((this.contents[ii][this.TIMEA_E]-this.contents[ii][this.TIMEA_S])*1000).toString()+');">Answer</button><br>';
+	}
+	this.elementB.innerHTML = sHtml;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function setExpress(element) {
 	let sHtml = "";
 
@@ -297,11 +291,17 @@ onload = function() {
 	zoneConversations2 = new ClsConversations2('zoneConversations2',eVideo,ele,htmlConversations);
 	zoneConversations2.draw();
 
+	ele = document.getElementById('practices');
+	zonePractices = new ClsVocabularies('zonePractices',eVideo,ele,htmlPractices);
+	zonePractices.draw();
+
 	ele = document.getElementById('vocabularies');
-	setVocabularies(ele);
+	zoneVocabularies = new ClsVocabularies('zoneVocabularies',eVideo,ele,htmlVocabularies);
+	zoneVocabularies.draw();
 
 	ele = document.getElementById('express');
-	setExpress(ele);
+	zoneExpresses = new ClsExpresses('zoneExpresses',eVideo,ele,htmlExpresses);
+	zoneExpresses.draw();
 
 	eWordsAns = document.getElementById('wordsans');
 	ele = document.getElementById('words');
