@@ -2,53 +2,15 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<style type="text/css">
-			h2 {
-				font-family:century;
-				display:inline-block;
-				background-color:white;
-				color:salmon;
-				letter-spacing:1px;
-				padding-top:5px;
-				padding-bottom:5px;
-				padding-left:20px;
-				padding-right:20px;
-			}
-			.funcButton {
-				background-color:skyblue;
-			}
-			#wordsans {
-				letter-spacing:1px;
-				font-family:serif;
-				border:solid 2px;
-				padding:30px;
-				font-size:80px;
-				font-weight:bold;
-			}
-			.grammar_comment {
-				font-size:20px;
-				border:solid 1px black;
-				padding-right:5px;
-				padding-left:5px;
-			}
-			.grammar {
-				font-size:40px;
-				border-top:dashed 1px black;
-				border-bottom:dashed 1px black;
-				margin-left:30px;
-			}
-			.grammar_inner {
-				color:red;
-				font-size:50px;
-			}
-		</style>
-		<script type="application/javascript" src="main5.js"></script>
+		<link rel="stylesheet" type="text/css" href="css1.css">
+		<script type="application/javascript" src="main7.js"></script>
 		<script type="application/javascript">
-const date_before = new Date('2019/6/17');
-const date_today = new Date('2019/6/18');
-const date_after = new Date('2019/6/19');
-const names = ["Aya","Ben"];
-const sentences = [
+const htmlTitle = "";
+const htmlDateBefore = new Date('2019/6/17');
+const htmlDateToday = new Date('2019/6/18');
+const htmlDateAfter = new Date('2019/6/19');
+const htmlNames = ["Aya","Ben"];
+const htmlConversations = [
 /*
  [,,"",""]
 ,[,,"",""]
@@ -75,7 +37,9 @@ const sentences = [
 ,[96]
 ];
 
-const vocabularies = [
+const htmlPractices = [ ];
+
+const htmlVocabularies = [
 /*
  [,,"",""]
 ,[,,"",""]
@@ -87,7 +51,7 @@ const vocabularies = [
 ,[570.5,572.5,"Where can I reach you?","連絡先を教えてもらえますか？"]
 ];
 
-const expresses = [
+const htmlExpresses = [
 /*
  [,,,]
 ,[,,,]
@@ -96,7 +60,7 @@ const expresses = [
 ,[763,777.5,789.2,791.7]
 ];
 
-const words = [
+const htmlWords = [
 /*
  [,,"",""]
 ,[,,"",""]
@@ -112,6 +76,7 @@ const words = [
 		</script>
 	</head>
 	<body>
+		<h1 id="date"></h1>
 		<h1 id="htitle"></h1>
 		<h2>CONVERSATION</h2>
 		<br><button class="funcButton" onclick="setButtons();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
@@ -132,6 +97,10 @@ const words = [
 
 
 
+		<h2>PRACTICE</h2>
+		<div id="practices"></div>
+		<br><br>
+
 		<h2>BUILD UP YOUR VOCABULARY</h2>
 		<br><button class="funcButton" onclick="setVocabularies();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="vocabularies"></div>
@@ -139,8 +108,9 @@ const words = [
 		<br><button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="express"></div>
 		<h2>WORDS AND PHRASES</h2>
-		<div id="wordsans">　</div>
 		<div id="words"></div>
+		<div id="wordsans">　</div>
+		<div id="wordslist"></div>
 		<br><br><hr>
 		<center><a id="before">前日</a>&nbsp;&nbsp;&nbsp;<a id="after">翌日</a>
 		</center>

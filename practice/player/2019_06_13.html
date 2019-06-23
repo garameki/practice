@@ -2,37 +2,15 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<style type="text/css">
-			h2 {
-				font-family:century;
-				display:inline-block;
-				background-color:white;
-				color:salmon;
-				letter-spacing:1px;
-				padding-top:5px;
-				padding-bottom:5px;
-				padding-left:20px;
-				padding-right:20px;
-			}
-			.funcButton {
-				background-color:skyblue;
-			}
-			#wordsans {
-				letter-spacing:1px;
-				font-family:serif;
-				border:solid 2px;
-				padding:30px;
-				font-size:80px;
-				font-weight:bold;
-			}
-		</style>
-		<script type="application/javascript" src="main5.js"></script>
+		<link rel="stylesheet" type="text/css" href="css1.css">
+		<script type="application/javascript" src="main7.js"></script>
 		<script type="application/javascript">
-const date_before = new Date('2019/6/12');
-const date_today = new Date('2019/6/13');
-const date_after = new Date('2019/6/14');
-const names = ["Jenny","Dad"];
-const sentences = [
+const htmlTitle = "";
+const htmlDateBefore = new Date('2019/6/12');
+const htmlDateToday = new Date('2019/6/13');
+const htmlDateAfter = new Date('2019/6/14');
+const htmlNames = ["Jenny","Dad"];
+const htmlConversations = [
 /*
  [,,"",""]
 ,[,,"",""]
@@ -51,7 +29,9 @@ const sentences = [
 ,[102]
 ];
 
-const vocabularies = [
+const htmlPractices = [ ];
+
+const htmlVocabularies = [
 /*
  [,,"",""]
 ,[,,"",""]
@@ -64,7 +44,7 @@ const vocabularies = [
 ,[507.5,511,"Nothing was left after Chris left the party.","クリスがパーティから帰った後は、何も残っていなかった。"]
 ];
 
-const expresses = [
+const htmlExpresses = [
 /*
  [,,,]
 ,[,,,]
@@ -74,7 +54,7 @@ const expresses = [
 ,[763,767,793,796]
 ];
 
-const words = [
+const htmlWords = [
 /*
  [,,"",""]
 ,[,,"",""]
@@ -85,11 +65,16 @@ const words = [
 		</script>
 	</head>
 	<body>
+		<h1 id="date"></h1>
 		<h1 id="htitle"></h1>
 		<h2>CONVERSATION</h2>
 		<br><button class="funcButton" onclick="setButtons();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="conversation"></div>
-		<br><br>
+		
+				<h2>PRACTICE</h2>
+				<div id="practices"></div>
+				<br><br><br><br>
+
 		<h2>BUILD UP YOUR VOCABULARY</h2>
 		<br><button class="funcButton" onclick="setVocabularies();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="vocabularies"></div>
@@ -97,8 +82,9 @@ const words = [
 		<br><button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="express"></div>
 		<h2>WORDS AND PHRASES</h2>
-		<div id="wordsans">　</div>
 		<div id="words"></div>
+		<div id="wordsans">　</div>
+		<div id="wordslist"></div>
 		<br><br><hr>
 		<center><a id="before">前日</a>&nbsp;&nbsp;&nbsp;<a id="after">翌日</a>
 		</center>

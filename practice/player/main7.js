@@ -213,62 +213,50 @@ ClsExpresses.prototype.draw = function() {
 
 
 
-const Words = function(sVariable,elementVideo,elementAns,elementButton,elementList,contents,aCorrect,aIncorrect) {
+const Words = function(sVariable,elementVideo,elementAns,elementButton,elementList,contents,aCorrect,aIncorrect,aStart,aEnd,sDate) {
 	if(!elementAns.isConnected) {
 		console.error('words and phraseの答えを表示するエレメントがありません。');
 	}
 	if(!elementButton.isConnected) {
 		console.error('words and phraseのボタンを表示するエレメントがありません。');
 	}
-	/*音*/
-	this.aC = aCorrect;
-	this.aI = aIncorrect;
+	if(contents.length > 0) {
+		/*音*/
+		this.aC = aCorrect;
+		this.aI = aIncorrect;
+		this.aS = aStart;
+		this.aE = aEnd;
+		this.sD = sDate;
 
-	this.sVariable = sVariable;
-	this.eV = elementVideo;
-	this.eA = elementAns;
-	this.eB = elementButton;
-	this.eL = elementList;
-	this.contents = contents;
-	
-	/*this.contentsの場所*/
-	this.TIME_S = 0;
-	this.TIME_E = 1;
-	this.ENG = 2;
-	this.JAP = 3
+		this.sVariable = sVariable;
+		this.eV = elementVideo;
+		this.eA = elementAns;
+		this.eB = elementButton;
+		this.eL = elementList;
+		this.contents = contents;
+		
+		/*this.contentsの場所*/
+		this.TIME_S = 0;
+		this.TIME_E = 1;
+		this.ENG = 2;
+		this.JAP = 3
 
-	this.nNode = -1;/*マウスがクリックされているノードの絶対番号*/
+		this.nNode = -1;/*マウスがクリックされているノードの絶対番号*/
 
+		/*スコア読み込み*/
+		if(!this._cookieCheck()) this._cookieReset();
 
-	/*スコア読み込み*/
-	if(!this._cookieCheck()) {
-		this._cookieReset();
+		this.entries = this._getFromCookie();/*[ノード番号,スコア]*/
+		
+		this._buttonRandom();
+		this._buttonList();
 	}
-	const ids = this._getFromCookie();
-
-	this.entries = [ ];
-	if(ids.length == contents.length) {
-		for(let ii=0;ii<contents.length;ii++) {
-			this.entries.push(ids[ii]);/*absNumber,score*/
-		}
-	} else {
-		this._cookieReset();
-		for(let ii=0;ii<contents.length;ii++) {
-			this.entries.push([
-				 ii
-				,0
-			]);
-		}
-	}
-	
-	this._buttonRandom();
-	this._buttonList();
 };
 Words.prototype._button = function(num) {
 	let sHtml = "errorが発生しました";
 	if(num < this.contents.length) {
 			sHtml = this._returnHTML(num);
-			sHtml += '<br><button class="wordsButton" onclick="'+this.sVariable+'.correct();">正解</button><button class="wordsButton" style="left:100px;" onclick="'+this.sVariable+'.incorrect();">不正解</button><button class="wordsButton" style="left:300px;" onclick="'+this.sVariable+'._cookieReset();">スコアクリア</button>';
+			sHtml += '<br><button class="wordsButton" onclick="'+this.sVariable+'.correct();">正解</button><button class="wordsButton" style="left:50px;" onclick="'+this.sVariable+'.incorrect();">不正解</button><button class="wordsButton" style="left:300px;" onclick="'+this.sVariable+'.aS.play();'+this.sVariable+'._cookieReset();'+this.sVariable+'._buttonList();'+this.sVariable+'._buttonRandom();">スコアクリア</button>';
 
 	} else {
 		console.error('num = ',num,'this.contents.length = ',this.contents.length,98498);
@@ -276,45 +264,99 @@ Words.prototype._button = function(num) {
 	this.eB.innerHTML = sHtml;
 };
 Words.prototype.correct = function() {
-	this._buttonRandom();
-	this.aI.pause();
-	this.aC.pause();
-	this.aC.currentTime = 0;
-	this.aC.play();
-	for(let ii=0;ii<this.entries.length;ii++) {
-		if(this.entries[ii][0] == this.nNode) {
-			this.entries[ii][1]++;
-			document.cookie = this.sVariable+this.nNode+'='+this.entries[ii][1].toString();
+	if(this.nNode != -1) {
+		this._buttonRandom();
+		this.aI.pause();
+		this.aC.pause();
+		this.aC.currentTime = 0;
+		this.aC.play();
+		let date = new Date();
+		date.setFullYear(date.getFullYear()+1);
+		let num = this._search(this.nNode);
+		document.cookie = this.sVariable+this.sD+this.nNode.toString()+'='+(++this.entries[num][1]).toString()+';expire='+date.toUTCString();
+		this.nNode = -1;
+		this._buttonList();
+
+		/*ファンファーレ*/
+		let flag = true;
+		for(let ii=0;ii<this.entries.length;ii++) {
+			if(this.entries[ii][1] < 3) {
+				flag = false;
+				break;
+			}
 		}
+		if(flag) this.aE.play();
+	} else {
+		this.eA.innerHTML = '<span style="display:block;text-valign:top;font-size:20px;">答え合わせをしてください</span>';
+		const hoge = setInterval(()=>{
+			clearInterval(hoge);
+			this.eA.innerHTML = '';
+		},500);
 	}
-	this.nNode = -1;
-	this._buttonList();
 };
 Words.prototype.incorrect = function() {
-	this._buttonRandom();
-	this.aI.pause();
-	this.aC.pause();
-	this.aI.currentTime = 0;
-	this.aI.play();
+	if(this.nNode != -1) {
+		this._buttonRandom();
+		this.aI.pause();
+		this.aC.pause();
+		this.aI.currentTime = 0;
+		this.aI.play();
+		let date = new Date();
+		date.setFullYear(date.getFullYear()+1);
+		let num = this._search(this.nNode);
+		document.cookie = this.sVariable+this.sD+this.nNode.toString()+'='+(--this.entries[num][1]).toString()+';expire='+date.toUTCString();
+		this.nNode = -1;
+		this._buttonList();
+	} else {
+		this.eA.innerHTML = '<span style="display:block;text-valign:top;font-size:20px;">答え合わせをしてください</span>';
+		const hoge = setInterval(()=>{
+			clearInterval(hoge);
+			this.eA.innerHTML = '';
+		},500);
+	}
+};
+Words.prototype._search = function(nNum) {
+
+	let num = -1;
 	for(let ii=0;ii<this.entries.length;ii++) {
-		if(this.entries[ii][0] == this.nNode) {
-			this.entries[ii][1]--;
-			document.cookie = this.sVariable+this.nNode+'='+this.entries[ii][1].toString();
+		if(this.entries[ii][0] == nNum) {
+			num = ii;
+			break;
 		}
 	}
-	this.nNode = -1;
-	this._buttonList();
+	if(num == -1) console.error('can\'t find node No'+nNum.toString()+'in the "this.entries"',85221475555);
+	return num;
 };
 Words.prototype._buttonRandom = function() {
-	let ii = Math.round(Math.random() * this.contents.length-0.5);
-	if(ii >= this.entries.length) console.error('ii=',ii);
-	this._button(ii);
+
+	let ans;
+	const nn = this.entries.length;
+
+
+	const max = nn*(nn+1)*(2*nn+1)/6;
+	const pp = Math.round(Math.random() * max - 0.5);
+	let sum = 0;
+	for(let kk=1;kk<=nn;kk++) {
+		sum += kk * kk;
+		if(sum > pp) {
+			ans = nn - kk;
+			break;
+		}
+	}
+
+	/************************************************************
+	一様分布/
+//	let ans = Math.round(Math.random() * nn - 0.5);
+	**************************************************************/
+
+	if(ans >= nn) console.error('ans=',ans,'Words.prototype._buttonRandom()');
+	this._button(ans);
 };
 Words.prototype._getFromCookie = function() {
 	/*スコア読み込み*/
 	const cookie = document.cookie;
 	const cookies = cookie.split(';');/*最後には;を付けないこと*/
-	const regexp = new RegExp('^\\s'+this.sVariable+'(\\d+)');
+	const regexp = new RegExp('^\\s*'+this.sVariable+this.sD+'(\\d+)');
 	const ids = [ ];
 	let id,num;
 	for(let ii=0;ii<cookies.length;ii++) {
@@ -329,7 +371,11 @@ Words.prototype._getFromCookie = function() {
 Words.prototype._cookieReset = function() {
 	this._cookieClear();
 	for(let ii=0;ii<this.contents.length;ii++) {
-		document.cookie = this.sVariable+ii.toString()+'=0;';
+		document.cookie = this.sVariable+this.sD+ii.toString()+'=0;';
+	}
+	this.entries = [ ];
+	for(let ii=0;ii<this.contents.length;ii++) {
+		this.entries.push([ii,0]);
 	}
 };
 Words.prototype._cookieClear = function() {
@@ -337,6 +383,7 @@ Words.prototype._cookieClear = function() {
 	for(let ii=0;ii<ids.length;ii++) {
 		document.cookie = ids[0]+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
 	}
+	this.entries = [ ];
 
 };
 Words.prototype._cookieCheck = function() {
@@ -344,16 +391,21 @@ Words.prototype._cookieCheck = function() {
 	const ids = this._getFromCookie();
 	const regexp = new RegExp('^\\d+$');
 	let flag = true;
-	for(let ii=0;ii<ids.length;ii++) {
-		if(isNaN(ids[ii][1])) {
-			flag = false;
-			break;
+	if(ids.length != this.contents.length) {
+		flag = false;
+	} else {
+		/*NaNのチェック*/
+		for(let ii=0;ii<ids.length;ii++) {
+			if(isNaN(ids[ii][1])) {
+				flag = false;
+				break;
+			}
 		}
 	}
 	return flag;
 };
 Words.prototype._returnHTML = function(ii) {
-	return '<button id="'+this.sVariable+this.entries[ii][0].toString()+'" style="font-size:25px;" onmouseup="'+this.sVariable+'.eA.innerText=\'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();" onmousedown="'+this.sVariable+'.nNode='+this.entries[ii][0].toString()+';'+this.sVariable+'.eA.innerHTML=\''+this.contents[this.entries[ii][0]][this.ENG]+'\';clearInterval(hoge);'+this.sVariable+'.eV.currentTime='+this.contents[this.entries[ii][0]][this.TIME_S].toString()+';'+this.sVariable+'.eV.play();hoge=setInterval(()=>{clearInterval(hoge);'+this.sVariable+'.eV.pause();},'+((this.contents[this.entries[ii][0]][this.TIME_E]-this.contents[this.entries[ii][0]][this.TIME_S])*1000).toString()+');">'+this.contents[this.entries[ii][0]][this.JAP]+'<span style="color:red;">'+this.entries[ii][1].toString()+'点</span></button>';
+	return '<button id="'+this.sVariable+this.entries[ii][0].toString()+'" style="font-size:25px;" onmouseup="'+this.sVariable+'.eA.innerText=\'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();" onmousedown="'+this.sVariable+'.nNode='+this.entries[ii][0].toString()+';'+this.sVariable+'.eA.innerHTML=\''+this.contents[this.entries[ii][0]][this.ENG]+'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();'+this.sVariable+'.eV.currentTime='+this.contents[this.entries[ii][0]][this.TIME_S].toString()+';'+this.sVariable+'.eV.play();hoge=setInterval(()=>{clearInterval(hoge);'+this.sVariable+'.eV.pause();},'+((this.contents[this.entries[ii][0]][this.TIME_E]-this.contents[this.entries[ii][0]][this.TIME_S])*1000).toString()+');">'+this.contents[this.entries[ii][0]][this.JAP]+'<span style="color:red;">'+this.entries[ii][1].toString()+'点</span></button>';
 };
 Words.prototype._buttonList = function() {
 	/*worse順に並べて表示する*/
@@ -448,6 +500,10 @@ onload = function() {
 	aCorrect.src = 'oto/correct.mp3';
 	const aIncorrect = new Audio();
 	aIncorrect.src = 'oto/incorrect.mp3';
+	const aStart = new Audio();
+	aStart.src = 'oto/gong.mp3';
+	const aEnd = new Audio();
+	aEnd.src = 'oto/gong3.mp3';
 
 
 	let oDate;
@@ -501,7 +557,7 @@ onload = function() {
 	eWordsAns = document.getElementById('wordsans');
 	const eWordsList = document.getElementById('wordslist');
 	ele = document.getElementById('words');
-	words = new Words('words',eVideo,eWordsAns,ele,eWordsList,htmlWords,aCorrect,aIncorrect);
+	words = new Words('words',eVideo,eWordsAns,ele,eWordsList,htmlWords,aCorrect,aIncorrect,aStart,aEnd,factoryDate(htmlDateToday).forFilename);
 //	setWords(eWordsList);
 
 };

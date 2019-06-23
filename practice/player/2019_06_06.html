@@ -2,11 +2,15 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<script type="application/javascript" src="main3.js"></script>
+		<link rel="stylesheet" type="text/css" href="css1.css">
+		<script type="application/javascript" src="main7.js"></script>
 		<script type="application/javascript">
-
-const names = ["Dad","Roxy"];
-const sentences = [
+const htmlTitle = "";
+const htmlDateBefore = new Date('2019/06/05');
+const htmlDateToday = new Date('2019/06/06');
+const htmlDateAfter = new Date('2019/06/07');
+const htmlNames = ["Dad","Roxy"];
+const htmlConversations = [
 // [,,"",""]
 //,[,,"",""]
  [64,1,"Roxy!","ロキシー、"]
@@ -29,7 +33,7 @@ const sentences = [
 ,[102]
 ];
 
-const vocabularies = [
+const htmlVocabularies = [
 // [,,"",""]
 //,[,,"",""]
  [360+50,412,"I'm coming.","すぐ行きます。"]
@@ -41,36 +45,60 @@ const vocabularies = [
 ,[95.5,98," but don't you get tired of making the same thing?","同じものを作ってばかりで飽きないの？"]
 ];
 
-const expresses = [
+const htmlPractices = [ ];
+
+const htmlExpresses = [
 // [,,,]
 //,[,,,]
  [621,625,637,641]
 ];
+
+const htmlWords = [ ];
 		</script>
 	</head>
 	<body>
-		<video controls id="video" width="420" height="300">
-			<source src="oto/2019_06_06.mp4">
-		</video>
-		<h1>2019年6月6日(木)</h1>
-		<h2>CONVERSATION</h2>
-		<button onclick="setButtons();">言語切替</button>  <button onclick="clearInterval(hoge);eVideo.pause();">停止</button><br>
-		<div id="conversation"></div>
+		<h1 id="date"></h1>
+		<h1 id="htitle"></h1>
+
+
+
+<!--		<div class="grammar_div"><span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=332;eVideo.play();">Can I see <span class="grammar_inner">the book </span> <span style="background-color:lightgray;"><span style="border-bottom:solid 3px black;">that</span> he signed?</span></span></div><br><br>-->
+
+		<h2>CHECK YOUR GRAMMAR!</h2><br>
+		<button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button> <button class="funcButton" onclick="clearInterval(hoge);eVideo.play();">再生</button><br><br>
+		<span class="grammar_comment">everyは単数</span><br>
+		<div class="grammar_div"><span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=149;eVideo.play();">
+			<span class="gKyouchou">Everyone</span> has a limit.
+		</span></div><br><br>
+		<span class="grammar_comment">letを使った目的語説明型</span><br>
+		<div class="grammar_div"><span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=189.5;eVideo.play();">
+			Can you let <span class="gKyouchou">me</span> <span class="gAmikake">know the date</span> ?
+		</span></div><br><br>
 		<br><br>
+
+
+
+		<h2>CONVERSATION</h2>
+		<div id="conversation"></div>
+
+		<h2>PRACTICE</h2>
+		<div id="practices"></div>
+
 		<h2>BUILD UP YOUR VOCABULARY</h2>
-		<button onclick="setVocabularies();">言語切替</button>  <button onclick="clearInterval(hoge);eVideo.pause();">停止</button><br>
 		<div id="vocabularies"></div>
+	
 		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
+		<br><button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="express"></div>
-		<br>
-		追加問題
-		<ul>
-		<li>この地域のアパートは安くは買えませんよ。
-		<li>すみません。いまのところ、何も思いつきません。
-		</ul>
-		解答は6月号29ページ<br><br>
-		<a href="2019_06_05.html">前日</a>&nbsp;&nbsp;&nbsp;
-		<a href="2019_06_07.html">翌日</a>
+
+		<h2>WORDS AND PHRASES</h2>
+		<div id="words"></div>
+		<div id="wordsans">　</div>
+		<div id="wordslist"></div>
+
+		<center><a id="before">前日</a>&nbsp;&nbsp;&nbsp;<a id="after">翌日</a>
+		</center>
+		<br><br><br>
 
 
 	</body>

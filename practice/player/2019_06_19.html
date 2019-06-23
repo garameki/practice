@@ -3,13 +3,14 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css1.css">
-		<script type="application/javascript" src="main5.js"></script>
+		<script type="application/javascript" src="main7.js"></script>
 		<script type="application/javascript">
-const date_before = new Date('2019/6/18');
-const date_today = new Date('2019/6/19');
-const date_after = new Date('2019/6/20');
-const names = ["Jeff","Maya","Onishi"];
-const sentences = [
+const htmlTitle = "";
+const htmlDateBefore = new Date('2019/6/18');
+const htmlDateToday = new Date('2019/6/19');
+const htmlDateAfter = new Date('2019/6/20');
+const htmlNames = ["Jeff","Maya","Onishi"];
+const htmlConversations = [
 /*
  [,,"",""]
 ,[,,"",""]
@@ -33,7 +34,9 @@ const sentences = [
 ,[107]
 ];
 
-const vocabularies = [
+const htmlPractices = [ ];
+
+const htmlVocabularies = [
 /*
  [,,"",""]
 ,[,,"",""]
@@ -52,7 +55,7 @@ const vocabularies = [
 ,[497,500,"I've given up trying to understand women!","女性を理解しようとするのをあきらめた。"]
 ];
 
-const expresses = [
+const htmlExpresses = [
 /*
  [,,,]
 ,[,,,]
@@ -66,7 +69,7 @@ const expresses = [
 ,[790.5,795,815.9,817.2]
 ];
 
-const words = [
+const htmlWords = [
 /*
  [,,"",""]
 ,[,,"",""]
@@ -86,6 +89,7 @@ const words = [
 		</script>
 	</head>
 	<body>
+		<h1 id="date"></h1>
 		<h1 id="htitle"></h1>
 
 
@@ -105,6 +109,10 @@ const words = [
 		<div id="conversation"></div>
 		<br><br>
 
+		<h2>PRACTICE</h2>
+		<div id="practices"></div>
+		<br><br>
+
 		<h2>BUILD UP YOUR VOCABULARY</h2>
 		<br><button class="funcButton" onclick="setVocabularies();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="vocabularies"></div>
@@ -112,8 +120,9 @@ const words = [
 		<br><button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="express"></div>
 		<h2>WORDS AND PHRASES</h2>
-		<div id="wordsans">　</div>
 		<div id="words"></div>
+		<div id="wordsans">　</div>
+		<div id="wordslist"></div>
 		<br><br><hr>
 		<center><a id="before">前日</a>&nbsp;&nbsp;&nbsp;<a id="after">翌日</a>
 		</center>

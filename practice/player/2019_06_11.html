@@ -2,27 +2,17 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<style type="text/css">
-			h2 {
-				font-family:century;
-				display:inline-block;
-				background-color:white;
-				color:salmon;
-				letter-spacing:1px;
-				padding-top:5px;
-				padding-bottom:5px;
-				padding-left:20px;
-				padding-right:20px;
-			}
-			.funcButton {
-				background-color:skyblue;
-			}
-		</style>
-		<script type="application/javascript" src="main4.js"></script>
+		<link rel="stylesheet" type="text/css" href="css1.css">
+		<script type="application/javascript" src="main7.js"></script>
 		<script type="application/javascript">
 
-const names = ["Patrick","Sophie"];
-const sentences = [
+const htmlTitle = "";
+const htmlDateBefore = new Date('2019/6/10');
+const htmlDateToday = new Date('2019/6/11');
+const htmlDateAfter = new Date('2019/6/12');
+
+const htmlNames = ["Patrick","Sophie"];
+const htmlConversations = [
 // [,,"",""]
 //,[,,"",""]
  [16.9,1,"Hey,","ほら、"]
@@ -42,7 +32,9 @@ const sentences = [
 ,[49]
 ];
 
-const vocabularies = [
+const htmlPractices = [ ];
+
+const htmlVocabularies = [
 // [,,"",""]
 //,[,,"",""]
  [107,110,"I remember he was a very popular student ","彼はとても人気のある生徒だったことを覚えている。"]
@@ -54,7 +46,7 @@ const vocabularies = [
 ,[471.8,473.5,"We've run out of ideas.","アイデアが枯渇してしまった。"]
 ];
 
-const expresses = [
+const htmlExpresses = [
 /*
  [,,,]
 ,[,,,]
@@ -64,7 +56,7 @@ const expresses = [
 ,[716,719,734,737]
 ];
 
-const words = [
+const htmlWords = [
 /*
  [,,"",""]
 ,[,,"",""]
@@ -81,25 +73,29 @@ const words = [
 		</script>
 	</head>
 	<body>
-		<video controls id="video" width="420" height="300">
-			<source src="oto/2019_06_11.mp4">
-		</video>
-		<h1>2019年6月11日(火)</h1>
+		<h1 id="date"></h1>
+		<h1 id="htitle"></h1>
+
 		<h2>CONVERSATION</h2>
-		<br><button class="funcButton" onclick="setButtons();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="conversation"></div>
-		<br><br>
+		
+		<h2>PRACTICE</h2>
+		<div id="practices"></div>
+		
+
 		<h2>BUILD UP YOUR VOCABULARY</h2>
-		<br><button class="funcButton" onclick="setVocabularies();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="vocabularies"></div>
+
 		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
 		<div id="express"></div>
+
 		<h2>WORDS AND PHRASES</h2>
-		<div id="wordsans" style="letter-spacing:1px;font-family:serif;border:solid 2px;padding:30px;font-size:80px;font-weight:bold;">　</div>
 		<div id="words"></div>
-		<br><br><hr>
-		<center><a href="2019_06_10.html">前日</a>&nbsp;&nbsp;&nbsp;
-		<a href="2019_06_12.html">翌日</a>
+		<div id="wordsans">　</div>
+		<div id="wordslist"></div>
+
+		<hr>
+		<center><a id="before">前日</a>&nbsp;&nbsp;&nbsp;<a id="after">翌日</a>
 		</center>
 		<br><br><br>
 

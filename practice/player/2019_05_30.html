@@ -2,11 +2,15 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<script type="application/javascript" src="main2.js"></script>
+		<link rel="stylesheet" type="text/css" href="css1.css">
+		<script type="application/javascript" src="main7.js"></script>
 		<script type="application/javascript">
-
-const names = ["Neithan","Sabrina"];
-const sentences = [
+const htmlTitle = "";
+const htmlDateBefore = new Date('2019/05/29');
+const htmlDateToday = new Date('2019/05/30');
+const htmlDateAfter = new Date('2019/06/03');
+const htmlNames = ["Neithan","Sabrina"];
+const htmlConversations = [
  [50.5,1,"So we finally got to eat in a Taiwanese night market.","さあ、僕たちはついに台湾の夜市で食事ができるね。"]
 ,[55.0,2,"Yes","ええ、"]
 ,[56.0,2,"Taipei is a food paradaise.","台北は食の楽園なのよ。"]
@@ -31,7 +35,7 @@ const sentences = [
 ,[93.0]
 ];
 
-const vocabularies = [
+const htmlVocabularies = [
 [480+17.8,480+20,"under-the-table dealings","裏取引"]
 ,[480+35,480+38,"I put the parcel under the table.","小包をテーブルの下に置いた。"]
 ,[543,546,"Under the table is our catt's favorite sleeping place.","テーブルの下が、私たちのネコが寝るお気に入りの場所なんです。"]
@@ -39,29 +43,59 @@ const vocabularies = [
 ,[720+50,720+54,"With all due respect, I have to disagree with you.","失礼ながら、同意はできかねます。"]
 ];
 
-const expresses = [
+const htmlWords = [ ];
+
+const htmlPractices = [ ];
+
+const htmlExpresses = [
 [660+11,660+16,696.5,700.5]
 ,[720+23,720+26,770,774]
 ];
 		</script>
 	</head>
 	<body>
-		<video controls id="video" width="420" height="300">
-			<source src="oto/2019_05_30.mp4">
-		</video>
-		<h1>2019年5月30日(火)</h1>
-		<h2>CONVERSATION</h2>
-		<button onclick="setButtons(MODE_ENG);">英語</button> <button onclick="setButtons(MODE_JAP);">日本語</button><br>
-		<div id="conversation"></div>
+		<h1 id="date"></h1>
+		<h1 id="htitle"></h1>
+
+
+
+<!--		<div class="grammar_div"><span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=332;eVideo.play();">Can I see <span class="grammar_inner">the book </span> <span style="background-color:lightgray;"><span style="border-bottom:solid 3px black;">that</span> he signed?</span></span></div><br><br>-->
+
+		<h2>CHECK YOUR GRAMMAR!</h2><br>
+		<button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button> <button class="funcButton" onclick="clearInterval(hoge);eVideo.play();">再生</button><br><br>
+		<span class="grammar_comment">everyは単数</span><br>
+		<div class="grammar_div"><span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=149;eVideo.play();">
+			<span class="gKyouchou">Everyone</span> has a limit.
+		</span></div><br><br>
+		<span class="grammar_comment">letを使った目的語説明型</span><br>
+		<div class="grammar_div"><span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=189.5;eVideo.play();">
+			Can you let <span class="gKyouchou">me</span> <span class="gAmikake">know the date</span> ?
+		</span></div><br><br>
 		<br><br>
+
+
+
+		<h2>CONVERSATION</h2>
+		<div id="conversation"></div>
+
+		<h2>PRACTICE</h2>
+		<div id="practices"></div>
+
 		<h2>BUILD UP YOUR VOCABULARY</h2>
-		<button onclick="setVocabularies(MODE_ENG);">英語</button> <button onclick="setVocabularies(MODE_JAP);">日本語</button><br>
 		<div id="vocabularies"></div>
+	
 		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
+		<br><button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="express"></div>
-		<br>
-		<a href="2019_06_03.html">前日</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="2019_06_03.html">翌日</a>
+
+		<h2>WORDS AND PHRASES</h2>
+		<div id="words"></div>
+		<div id="wordsans">　</div>
+		<div id="wordslist"></div>
+
+		<center><a id="before">前日</a>&nbsp;&nbsp;&nbsp;<a id="after">翌日</a>
+		</center>
+		<br><br><br>
 
 
 	</body>

@@ -2,27 +2,16 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<style type="text/css">
-			h2 {
-				font-family:century;
-				display:inline-block;
-				background-color:white;
-				color:salmon;
-				letter-spacing:1px;
-				padding-top:5px;
-				padding-bottom:5px;
-				padding-left:20px;
-				padding-right:20px;
-			}
-			.funcButton {
-				background-color:skyblue;
-			}
-		</style>
-		<script type="application/javascript" src="main4.js"></script>
+		<link rel="stylesheet" type="text/css" href="css1.css">
+		<script type="application/javascript" src="main7.js"></script>
 		<script type="application/javascript">
 
-const names = ["Ken","Hiroko"];
-const sentences = [
+const htmlTitle = "";
+const htmlDateBefore = new Date('2019/06/7');
+const htmlDateToday = new Date('2019/06/10');
+const htmlDateAfter = new Date('2019/06/11');
+const htmlNames = ["Ken","Hiroko"];
+const htmlConversations = [
  [49,1,"Hi.","こんにちは。"]
 ,[50,1,"This is my first time to have a palm reading.","僕は手相を見てもらうのは初めてなんです。"]
 ,[53.5,2,"Just relax,sir.","ただリラックスしていてください。"]
@@ -42,21 +31,23 @@ const sentences = [
 ,[86.5]
 ];
 
-const vocabularies = [
+const htmlVocabularies = [
  [360+19.5,360+22,"I hope your prediction comes true.","あなたの予言が当たることを願っています。"]
 ,[417.5,420,"Everything will come right in the end.","最後には全てうまくいきますよ。"]
 ,[432.5,435,"Everything went wrong.","何もかもうまくいかなかった。"]
 ,[546,548.5,"Come on. You can do it.","いいかい。君ならできるさ。"]
 ];
 
-const expresses = [
+const htmlPractices = [ ];
+
+const htmlExpresses = [
 // [,,,]
 //,[,,,]
  [674,678.5,700,705]
 ,[762,767,789.5,794]
 ];
 
-const words = [
+const htmlWords = [
 // [,,"",""]
 //,[,,"",""]
  [464.2,465.5,"go rotten","腐る"]
@@ -72,28 +63,48 @@ const words = [
 		</script>
 	</head>
 	<body>
-		<video controls id="video" width="420" height="300">
-			<source src="oto/2019_06_10.mp4">
-		</video>
-		<h1>2019年6月10日(月)</h1>
-		<h2>CONVERSATION</h2>
-		<br><button class="funcButton" onclick="setButtons();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
-		<div id="conversation"></div>
+		<h1 id="date"></h1>
+		<h1 id="htitle"></h1>
+
+
+
+<!--		<div class="grammar_div"><span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=332;eVideo.play();">Can I see <span class="grammar_inner">the book </span> <span style="background-color:lightgray;"><span style="border-bottom:solid 3px black;">that</span> he signed?</span></span></div><br><br>-->
+
+		<h2>CHECK YOUR GRAMMAR!</h2><br>
+		<button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button> <button class="funcButton" onclick="clearInterval(hoge);eVideo.play();">再生</button><br><br>
+		<span class="grammar_comment">everyは単数</span><br>
+		<div class="grammar_div"><span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=149;eVideo.play();">
+			<span class="gKyouchou">Everyone</span> has a limit.
+		</span></div><br><br>
+		<span class="grammar_comment">letを使った目的語説明型</span><br>
+		<div class="grammar_div"><span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=189.5;eVideo.play();">
+			Can you let <span class="gKyouchou">me</span> <span class="gAmikake">know the date</span> ?
+		</span></div><br><br>
 		<br><br>
+
+
+
+		<h2>CONVERSATION</h2>
+		<div id="conversation"></div>
+
+		<h2>PRACTICE</h2>
+		<div id="practices"></div>
+
 		<h2>BUILD UP YOUR VOCABULARY</h2>
-		<br><button class="funcButton" onclick="setVocabularies();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="vocabularies"></div>
+	
 		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
+		<br><button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="express"></div>
+
 		<h2>WORDS AND PHRASES</h2>
-		<div id="wordsans" style="letter-spacing:1px;font-family:serif;border:solid 2px;padding:30px;font-size:80px;font-weight:bold;">　</div>
 		<div id="words"></div>
-		<br><br><hr>
-		<center><a href="2019_06_07.html">先週末</a>&nbsp;&nbsp;&nbsp;
-		<a href="2019_06_11.html">翌日</a>
+		<div id="wordsans">　</div>
+		<div id="wordslist"></div>
+
+		<center><a id="before">前日</a>&nbsp;&nbsp;&nbsp;<a id="after">翌日</a>
 		</center>
 		<br><br><br>
-
 
 	</body>
 </html>

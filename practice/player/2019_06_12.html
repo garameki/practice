@@ -2,29 +2,15 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<style type="text/css">
-			h2 {
-				font-family:century;
-				display:inline-block;
-				background-color:white;
-				color:salmon;
-				letter-spacing:1px;
-				padding-top:5px;
-				padding-bottom:5px;
-				padding-left:20px;
-				padding-right:20px;
-			}
-			.funcButton {
-				background-color:skyblue;
-			}
-		</style>
-		<script type="application/javascript" src="main5.js"></script>
+		<link rel="stylesheet" type="text/css" href="css1.css">
+		<script type="application/javascript" src="main7.js"></script>
 		<script type="application/javascript">
-const date_before = new Date('2019/6/11');
-const date_today = new Date('2019/6/12');
-const date_after = new Date('2019/6/13');
-const names = ["Theo","Mirai","Dog"];
-const sentences = [
+const htmlTitle = "";
+const htmlDateBefore = new Date('2019/6/11');
+const htmlDateToday = new Date('2019/6/12');
+const htmlDateAfter = new Date('2019/6/13');
+const htmlNames = ["Theo","Mirai","Dog"];
+const htmlConversations = [
 /*
  [,,"",""]
 ,[,,"",""]
@@ -50,7 +36,9 @@ const sentences = [
 ,[103.5]
 ];
 
-const vocabularies = [
+const htmlPractices = [ ];
+
+const htmlVocabularies = [
 /*
  [,,"",""]
 ,[,,"",""]
@@ -71,7 +59,7 @@ const vocabularies = [
 ,[795.5,799,"This elevator can carry up to 10 people.","(up to)このエレベーターは10人まで乗れます。"]
 ];
 
-const expresses = [
+const htmlExpresses = [
 /*
  [,,,]
 ,[,,,]
@@ -81,7 +69,7 @@ const expresses = [
 ,[773,777,799,803]
 ];
 
-const words = [
+const htmlWords = [
 /*
  [,,"",""]
 ,[,,"",""]
@@ -97,20 +85,26 @@ const words = [
 		</script>
 	</head>
 	<body>
+		<h1 id="date"></h1>
 		<h1 id="htitle"></h1>
 		<h2>CONVERSATION</h2>
-		<br><button class="funcButton" onclick="setButtons();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="conversation"></div>
-		<br><br>
+		
+		<h2>PRACTICE</h2>
+		<div id="practices"></div>
+
 		<h2>BUILD UP YOUR VOCABULARY</h2>
-		<br><button class="funcButton" onclick="setVocabularies();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="vocabularies"></div>
+
+
+
 		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
 		<br><button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
 		<div id="express"></div>
 		<h2>WORDS AND PHRASES</h2>
-		<div id="wordsans" style="letter-spacing:1px;font-family:serif;border:solid 2px;padding:30px;font-size:80px;font-weight:bold;">　</div>
 		<div id="words"></div>
+		<div id="wordsans" style="letter-spacing:1px;font-family:serif;border:solid 2px;padding:30px;font-size:80px;font-weight:bold;">　</div>
+		<div id="wordslist"></div>
 		<br><br><hr>
 		<center><a id="before" href="2019_06_10.html">前日</a>&nbsp;&nbsp;&nbsp;
 		<a id="after" href="2019_06_12.html">翌日</a>
