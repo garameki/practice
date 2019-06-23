@@ -262,6 +262,12 @@ Words.prototype._button = function(num) {
 		console.error('num = ',num,'this.contents.length = ',this.contents.length,98498);
 	}
 	this.eB.innerHTML = sHtml;
+	document.getElementById('forVisible').style.visibility = 'hidden';
+	const hogeVisible = setInterval(()=>{
+		document.getElementById('forVisible').style.visibility = 'visible';
+		clearInterval(hogeVisible);
+	},300);
+
 };
 Words.prototype.correct = function() {
 	if(this.nNode != -1) {
@@ -285,7 +291,10 @@ Words.prototype.correct = function() {
 				break;
 			}
 		}
-		if(flag) this.aE.play();
+		if(flag) {
+			this.aE.play();
+		}
+
 	} else {
 		this.eA.innerHTML = '<span style="display:block;text-valign:top;font-size:20px;">答え合わせをしてください</span>';
 		const hoge = setInterval(()=>{
@@ -405,7 +414,7 @@ Words.prototype._cookieCheck = function() {
 	return flag;
 };
 Words.prototype._returnHTML = function(ii) {
-	return '<button id="'+this.sVariable+this.entries[ii][0].toString()+'" style="font-size:25px;" onmouseup="'+this.sVariable+'.eA.innerText=\'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();" onmousedown="'+this.sVariable+'.nNode='+this.entries[ii][0].toString()+';'+this.sVariable+'.eA.innerHTML=\''+this.contents[this.entries[ii][0]][this.ENG]+'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();'+this.sVariable+'.eV.currentTime='+this.contents[this.entries[ii][0]][this.TIME_S].toString()+';'+this.sVariable+'.eV.play();hoge=setInterval(()=>{clearInterval(hoge);'+this.sVariable+'.eV.pause();},'+((this.contents[this.entries[ii][0]][this.TIME_E]-this.contents[this.entries[ii][0]][this.TIME_S])*1000).toString()+');">'+this.contents[this.entries[ii][0]][this.JAP]+'<span style="color:red;">'+this.entries[ii][1].toString()+'点</span></button>';
+	return '<div id="forVisible"><button id="'+this.sVariable+this.entries[ii][0].toString()+'" style="font-size:25px;" onmouseout="'+this.sVariable+'.eA.innerText=\'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();" onmouseup="'+this.sVariable+'.eA.innerText=\'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();" onmousedown="'+this.sVariable+'.nNode='+this.entries[ii][0].toString()+';'+this.sVariable+'.eA.innerHTML=\''+this.contents[this.entries[ii][0]][this.ENG]+'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();'+this.sVariable+'.eV.currentTime='+this.contents[this.entries[ii][0]][this.TIME_S].toString()+';'+this.sVariable+'.eV.play();hoge=setInterval(()=>{clearInterval(hoge);'+this.sVariable+'.eV.pause();},'+((this.contents[this.entries[ii][0]][this.TIME_E]-this.contents[this.entries[ii][0]][this.TIME_S])*1000).toString()+');">'+this.contents[this.entries[ii][0]][this.JAP]+'<span style="color:red;">'+this.entries[ii][1].toString()+'点</span></button></div>';
 };
 Words.prototype._buttonList = function() {
 	/*worse順に並べて表示する*/
