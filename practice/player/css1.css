@@ -52,6 +52,11 @@ button {
 	font-size:40px;
 	margin-left:30px;
 }
+.grammar2 {
+	display:block;
+	font-size:20px;
+	margin-left:30px;
+}
 .grammar_inner {
 	color:red;
 	font-size:50px;

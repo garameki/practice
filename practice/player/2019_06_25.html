@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css1.css">
+		<script type="application/javascript" src="main7.js"></script>
+		<script type="application/javascript">
+const htmlTitle = "";
+const htmlDateBefore = new Date('2019/6/24');
+const htmlDateToday = new Date('2019/6/25');
+const htmlDateAfter = new Date('2019/6/26');
+const htmlNames = ["Don","Kathy"];
+const htmlConversations = [
+/*
+ [,,"",""]
+,[,,"",""]
+,[]
+*/
+ [31.5,1,"How can I help you?","どのようなご用件ですか？"]
+,[33.5,2,"Well,I have what I think is a brilliant startup idea,","ええと、素晴らしい新規事業のアイデアだと思えるものが私にあるんですけど、"]
+,[38,2,"but I'm stuck.","行き詰っているんです。"]
+,[39.5,1,"You mean you don't know how to bring it to the next level?","つまり、それをどうやって次の段階に進めたらいいのかわからない、ということですか？"]
+,[43,2,"Exactly.","そのとおりです。"]
+,[44.5,2,"I need to develop the idea.","そのアイデアを練り上げる必要があるんです。"]
+,[47,2,"I'm hoping you can give me some advice.","あなたから何かアドバイスをいただけるといいんですけど。"]
+,[49.5,1,"I think you should start by carrying out a market survey.","市場調査を行うことから始めるべきだと思います。"]
+,[54,1,"That will allow you to see if your idea fills a gap in the market.","そうすることで、あなたのアイデアが市場の隙間を埋められるかどうか確かめられるでしょう。"]
+,[58.5,2,"OK.I'll do that.","わかりました。そうすることにしましょう。"]
+,[60.5]
+];
+
+const htmlPractices = [
+
+];
+
+const htmlVocabularies = [
+/*
+ [,,"",""]
+,[,,"",""]
+*/
+ [409,411.5,"I need to develop the idea.","そのアイデアを練り上げる必要があるんです。"]
+,[437,440.5,"Children develop better with good nutrition.","栄養がいいと子供はよりよく育つ。"]
+,[448.5,451,"It's important to develop good habits.","良い習慣を作るのは重要だ。"]
+,[515.3,519,"A powerful typhoon is developing in the Pacific.","強い台風が太平洋で発達中です。"]
+,[528.3,531.7,"The discussion developed into a bitter argument.","その議論は苦々しい口論となった。"]
+];
+
+const htmlExpresses = [
+/*
+ [,,,]
+,[,,,]
+,[,,,]
+*/
+ [617,624,635,643]
+,[704,710,721,728.5]
+];
+
+const htmlWords = [
+/*
+ [,,"",""]
+,[,,"",""]
+*/
+ [435.5,436.5,"nutrition","栄養"]
+,[64.8,66,"How can I help you?","どのようなご用件ですか？"]
+,[83.2,86,"stick","くっつける、動けなくする(verb)"]
+,[200.3,202,"stick stuck stuck","stickの活用"]
+,[73.1,75,"I\\'m stuck.","行き詰っています。"]
+,[416,433,"develop","発達する、発展する、開発する"]
+,[111,112.2,"exactly","そのとおりです。"]
+,[125.3,146,"be hoping (that)","～だったらいいなぁ"]
+,[166.3,175,"carry out","実行する"]
+,[382.4,384,"market survey","市場調査"]
+,[386.8,387.2,"gap","隙間"]
+,[741.7,784,"close friendship","親密な友情"]
+,[194,200,"The text brings your English to the next level.","テキストはあなたの英語を次のレベルに持っていきます。"]
+,[316.5,335,"allow (person) to (do)","(人)が～するのを許す"]
+,[340,345,"see if 節","～かどうか確かめる"]
+];
+		</script>
+	</head>
+	<body>
+		<h1 id="date"></h1>
+		<h1 id="htitle"></h1>
+
+
+
+		<h2>CHECK YOUR GRAMMAR!</h2><br>
+		<button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button> <button class="funcButton" onclick="clearInterval(hoge);eVideo.play();">再生</button><br><br>
+
+<!--ここから-->
+<!--題-->	<span class="grammar_comment">複雑なwh節</span><br>
+		<div class="grammar_div">
+			<span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=269;eVideo.play();">
+<!--本文-->I have what I think <span class="gAmikake">　</span> is a brilliant startup idea.
+			</span>
+			<span class="grammar2">
+<!--訳-->すばらしい新規事業のアイデアだと思えるものが私にあります。
+			</span>
+		</div>
+		<br><br>
+<!--ここまで-->
+<!--題-->	<span class="grammar_comment">to 不定詞を使った目的語説明型</span><br>
+		<div class="grammar_div">
+			<span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=312;eVideo.play();">
+<!--本文-->That will allow you to see if your idea fills a gap in the market.
+			</span>
+			<span class="grammar2">
+<!--訳-->そうすることで、あなたのアイデアが市場の隙間を埋められるかどうか確かめられるでしょう。
+			</span>
+			<br><a class="grammar2"href="https://www.makocho0828.net/entry/2017-05-10-%E5%90%8D%E8%A9%9E%E7%AF%80%E3%81%AEwhether%E7%AF%80%E3%81%A8if%E7%AF%80%E3%81%AE%E9%81%95%E3%81%84%E3%81%A8%E3%81%AF%EF%BC%9F%E3%81%93%E3%81%AE%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91%E3%81%A0">if節とwhether節の違い</a>
+		</div>
+		<br><br>
+
+
+		<h2>CONVERSATION</h2>
+		<div id="conversation"></div>
+
+		<h2>PRACTICE</h2>
+		<div id="practices"></div>
+
+		<h2>BUILD UP YOUR VOCABULARY</h2>
+		<div id="vocabularies"></div>
+	
+		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
+		<br><button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
+		<div id="express"></div>
+
+		<h2 style="border-left:solid 1px lightgrey;border-top:solid 1px lightgrey;border-bottom:solid 2px black;border-right:solid 2px black;position:relative;left:30px;" onmouseover="document.getElementById('wordsans').innerHTML = '<span style=\' font-size:20px;\' >スコアクリアボタンで開始。全部3点取れば終了だよ。</span>';" onmouseout="document.getElementById('wordsans').innerText = '';">WORDS AND PHRASES</h2>
+		<div id="words"></div>
+		<div id="wordsans">　</div>
+		<div id="wordslist"></div>
+
+		<center><a id="before">前日</a>&nbsp;&nbsp;&nbsp;<a id="after">翌日</a>
+		</center>
+		<br><br><br>
+
+
+	</body>
+</html>
