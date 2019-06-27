@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css1.css">
+		<script type="application/javascript" src="main7.js"></script>
+		<script type="application/javascript">
+const htmlTitle = "レベル２動詞:place,locate";
+const htmlDateBefore = new Date('2019/6/26');
+const htmlDateToday = new Date('2019/6/27');
+const htmlDateAfter = new Date('2019/6/28');
+const htmlNames = ["Vince","Bella","Onishi"];
+const htmlConversations = [
+/*
+ [,,"",""]
+,[,,"",""]
+,[]
+*/
+ [35,3,"FOREWORD","前説"]
+,[51.5,1,"Here we are at the famous Mouth of Truth!","さあ、ここがあの有名な「真実の口」だよ！"]
+,[55,2,"Yes, everyone knows about this place because of the movie Roman Hokiday.","ええ、「ローマの休日」という映画のおかげで、この場所のことは誰でも知ってるわ。"]
+,[60,1,"The princess played by Audrey Hepburn screamed when the man put his hand in the mouth.","オードリーヘップバーンが演じた王女は、あの男がその口に入れたときに悲鳴を上げたよね。"]
+,[66,2,"Yes, I remember that scene well.","ええ、その場面はよく覚えているわ。"]
+,[69,1,"Do you think I'm honest?","きみは、僕が正直だと思うかい？"]
+,[71.5,2,"I'm not sure.","どうかしら？"]
+,[73,2,"Let's find out.","確かめてみましょうよ。"]
+,[74.5,2,"Place your hand into the mouth slowly.","あなたの手をその口にゆっくりと入れてちょうだい。"]
+,[78,1,"OK.","わかった。"]
+,[79,1,"Here goes...","さあ行くぞ・・・"]
+,[80.7,1," ahhhh!!!","ああ～っ！"]
+,[82.5,2,"Come on, you can't fool me.","ちょっと、私のことは騙せないわよ。"]
+,[85]
+];
+
+const htmlPractices = [
+ [239,241.5,"(1)I'm planning a trip to London.","(1)私はロンドン旅行の計画を立てています。"]
+,[257.5,260,"(2)Dan is spoiled by his parents.","(2)ダンは両親に甘やかされています。"]
+,[274,277,"(3)My goal is to find a cure for cancer.","(3)私の目標はがんの治療法を発見することだ。"]
+,[297,300.5,"(4)The question is whether our business can survive or not.","(4)問題は僕らのビジネスが生き残れるかどうかだ。"]
+
+
+];
+
+const htmlVocabularies = [
+/*
+ [,,"",""]
+,[,,"",""]
+*/
+ [440.8,443.5,"Put/Place your hands under the tap.","蛇口の下に手を置いて(洗って)ください。"]
+,[509.5,513.5,"We're going to locate our new branch right in the city center.","街の中心部に新しい支店を作るつもりです。"]
+,[522.5,525.5,"I can't locate the village on this old map.","この古い地図ではその村がどこにあるのかわかりません。"]
+];
+
+const htmlExpresses = [
+/*
+ [,,,]
+,[,,,]
+,[,,,]
+*/
+ [608,615,631,635]
+,[721,733,749,753.2]
+];
+
+const htmlWords = [
+/*
+ [,,"",""]
+,[,,"",""]
+*/
+ [1,1.1,"Weve placed traps around the kitchen to catch cockroaches.","私たちはゴキブリを捕まえるために、台所周りにトラップを仕掛けています。"]
+,[511.3,511.8,"branch","支店"]
+,[442.8,443.5,"tap","蛇口(イギリス)"]
+,[814,815,"faucet","蛇口(アメリカ)"]
+,[258,258.6,"spoil","甘やかす"]
+,[275.5,275.93,"cure","治療法"]
+];
+		</script>
+	</head>
+	<body>
+		<h1 id="date"></h1>
+		<h1 id="htitle"></h1>
+
+
+
+		<h2>CHECK YOUR GRAMMAR!</h2><br>
+		<button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button> <button class="funcButton" onclick="clearInterval(hoge);eVideo.play();">再生</button><br><br>
+
+<!--ここから-->
+<!--題-->	<span class="grammar_comment">前置詞句を説明語句に</span><br>
+		<div class="grammar_div">
+			<span class="grammar" onclick="clearInterval(hoge);eVideo.currentTime=213.2;eVideo.play();">
+<!--本文-->Here we are <span class="gKyouchou">at the famous Mouth of Truth</span>!
+			</span>
+			<span class="grammar2">
+<!--訳-->さあ、ここがあの有名な「真実の口」だよ！
+			</span>
+			<br><a class="grammar2" href="#practices">練習項目がプラクティスにあります。</a>
+		</div>
+		<br><br>
+<!--ここまで-->
+
+
+		<h2>CONVERSATION</h2>
+		<div id="conversation"></div>
+
+		<h2>PRACTICE</h2>
+		<div id="practices"></div>
+
+		<h2>BUILD UP YOUR VOCABULARY</h2>
+		<div id="vocabularies"></div>
+	
+		<h2>EXPRESS YOURSELF IN ENGLISH</h2>
+		<br><button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>
+		<div id="express"></div>
+
+		<h2 style="border-left:solid 1px lightgrey;border-top:solid 1px lightgrey;border-bottom:solid 2px black;border-right:solid 2px black;position:relative;left:30px;" onmouseover="document.getElementById('wordsans').innerHTML = '<span style=\' font-size:20px;\' >スコアクリアボタンで開始。全部3点取れば終了だよ。</span>';" onmouseout="document.getElementById('wordsans').innerText = '';">WORDS AND PHRASES</h2>
+		<div id="words"></div>
+		<div id="wordsans">　</div>
+		<div id="wordslist"></div>
+
+		<center><a id="before">前日</a>&nbsp;&nbsp;&nbsp;<a id="after">翌日</a>
+		</center>
+		<br><br><br>
+
+
+	</body>
+</html>

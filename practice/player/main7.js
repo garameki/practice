@@ -235,7 +235,7 @@ const Words = function(sVariable,elementVideo,elementAns,elementButton,elementLi
 		this.eL = elementList;
 		this.contents = contents;
 		
-		/*this.contentsの場所*/
+		/*配列this.contentsにおける場所*/
 		this.TIME_S = 0;
 		this.TIME_E = 1;
 		this.ENG = 2;
@@ -255,18 +255,20 @@ const Words = function(sVariable,elementVideo,elementAns,elementButton,elementLi
 Words.prototype._button = function(num) {
 	let sHtml = "errorが発生しました";
 	if(num < this.contents.length) {
-			sHtml = this._returnHTML(num);
+			sHtml = '<div id="forVisible">' + this._returnHTML(num) + '</div>';
 			sHtml += '<br><button class="wordsButton" onclick="'+this.sVariable+'.correct();">正解</button><button class="wordsButton" style="left:50px;" onclick="'+this.sVariable+'.incorrect();">不正解</button><button class="wordsButton" style="left:300px;" onclick="'+this.sVariable+'.aS.play();'+this.sVariable+'._cookieReset();'+this.sVariable+'._buttonList();'+this.sVariable+'._buttonRandom();">スコアクリア</button>';
 
 	} else {
 		console.error('num = ',num,'this.contents.length = ',this.contents.length,98498);
 	}
 	this.eB.innerHTML = sHtml;
-	document.getElementById('forVisible').style.visibility = 'hidden';
-	const hogeVisible = setInterval(()=>{
-		document.getElementById('forVisible').style.visibility = 'visible';
-		clearInterval(hogeVisible);
-	},300);
+	if(num < this.contents.length) {
+		document.getElementById('forVisible').style.visibility = 'hidden';
+		const hogeVisible = setInterval(()=>{
+			document.getElementById('forVisible').style.visibility = 'visible';
+			clearInterval(hogeVisible);
+		},300);
+	}
 
 };
 Words.prototype.correct = function() {
@@ -364,6 +366,7 @@ Words.prototype._buttonRandom = function() {
 Words.prototype._getFromCookie = function() {
 	/*スコア読み込み*/
 	const cookie = document.cookie;
+	if(cookie == '') console.error('cookie is not available. Do through server.');
 	const cookies = cookie.split(';');/*最後には;を付けないこと*/
 	const regexp = new RegExp('^\\s*'+this.sVariable+this.sD+'(\\d+)');
 	const ids = [ ];
@@ -388,9 +391,11 @@ Words.prototype._cookieReset = function() {
 	}
 };
 Words.prototype._cookieClear = function() {
+	const date = new Date('1970/1/1');
 	const ids = this._getFromCookie();
 	for(let ii=0;ii<ids.length;ii++) {
-		document.cookie = ids[0]+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+		//document.cookie = ids[ii]+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+		document.cookie = ids[ii]+'=;expires='+ date.toUTCString();
 	}
 	this.entries = [ ];
 
@@ -414,7 +419,7 @@ Words.prototype._cookieCheck = function() {
 	return flag;
 };
 Words.prototype._returnHTML = function(ii) {
-	return '<div id="forVisible"><button id="'+this.sVariable+this.entries[ii][0].toString()+'" style="font-size:25px;" onmouseout="if(document.activeElement.id == \''+this.sVariable+this.entries[ii][0].toString()+'\') {'+this.sVariable+'.eA.innerText=\'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();}" onmouseup="'+this.sVariable+'.eA.innerText=\'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();" onmousedown="'+this.sVariable+'.nNode='+this.entries[ii][0].toString()+';'+this.sVariable+'.eA.innerHTML=\''+this.contents[this.entries[ii][0]][this.ENG]+'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();'+this.sVariable+'.eV.currentTime='+this.contents[this.entries[ii][0]][this.TIME_S].toString()+';'+this.sVariable+'.eV.play();hoge=setInterval(()=>{clearInterval(hoge);'+this.sVariable+'.eV.pause();},'+((this.contents[this.entries[ii][0]][this.TIME_E]-this.contents[this.entries[ii][0]][this.TIME_S])*1000).toString()+');">'+this.contents[this.entries[ii][0]][this.JAP]+'<span style="color:red;">'+this.entries[ii][1].toString()+'点</span></button></div>';
+	return '<button id="'+this.sVariable+this.entries[ii][0].toString()+'" style="font-size:25px;" onmouseout="if(document.activeElement.id == \''+this.sVariable+this.entries[ii][0].toString()+'\') {'+this.sVariable+'.eA.innerText=\'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();}" onmouseup="'+this.sVariable+'.eA.innerText=\'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();" onmousedown="'+this.sVariable+'.nNode='+this.entries[ii][0].toString()+';'+this.sVariable+'.eA.innerHTML=\''+this.contents[this.entries[ii][0]][this.ENG]+'\';clearInterval(hoge);'+this.sVariable+'.eV.pause();'+this.sVariable+'.eV.currentTime='+this.contents[this.entries[ii][0]][this.TIME_S].toString()+';'+this.sVariable+'.eV.play();hoge=setInterval(()=>{clearInterval(hoge);'+this.sVariable+'.eV.pause();},'+((this.contents[this.entries[ii][0]][this.TIME_E]-this.contents[this.entries[ii][0]][this.TIME_S])*1000).toString()+');">'+this.contents[this.entries[ii][0]][this.JAP]+'<span style="color:red;">'+this.entries[ii][1].toString()+'点</span></button>';
 };
 Words.prototype._buttonList = function() {
 	/*worse順に並べて表示する*/
@@ -440,25 +445,6 @@ Words.prototype._buttonList = function() {
 
 };
 
-function setWords(elementListAll) {
-	const ENG4 = 2;
-	const JAP4 = 3;
-	const TIME4_S = 0;
-	const TIME4_E = 1;
-	/**
-	  * 答えを描きこむエレメントをグローバル変数'eWordsAns'に用意してください
-	**/
-	if(!eWordsAns.isConnected) {
-		console.error('eWordsAnsが定義されていません');
-	}
-
-	let sHtml = "";
-	for(let ii=0;ii<htmlWords.length;ii++) {
-		sHtml += '<button style="font-size:25px;" onmouseup="eWordsAns.innerHTML=\'　\';clearInterval(hoge);eVideo.pause();" onmousedown="eWordsAns.innerHTML=\''+htmlWords[ii][ENG4]+'\';clearInterval(hoge);eVideo.currentTime='+htmlWords[ii][TIME4_S].toString()+';eVideo.play();hoge=setInterval(()=>{clearInterval(hoge);eVideo.pause();},'+((htmlWords[ii][TIME4_E]-htmlWords[ii][TIME4_S])*1000).toString()+');">'+htmlWords[ii][JAP4]+'</button><br>';
-	elementListAll.innerHTML = sHtml;
-
-	}
-}
 
 
 
