@@ -478,7 +478,7 @@ Words.prototype._cookieReset = function() {
 Words.prototype._cookieClear = function() {
 	const ids = this._getFromCookie();
 	for(let ii=0;ii<ids.length;ii++) {
-		document.cookie = ids[0]+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+		document.cookie = ids[ii]+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
 	}
 	this.entries = [ ];
 
