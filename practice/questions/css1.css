@@ -1,8 +1,15 @@
-#enemyDiv {
-	float:left;
 
+body {
+	background-color:black;
+	color:white;
 }
-#heroDiv {
+#battleField {
+	background-image: url('images/bahamutoBG.png');
+}
+#enemy {
+	float:left;
+}
+#hero {
 	float:right;
 }
 .clearFloat {

@@ -92,9 +92,8 @@ onload = function() {
 	setTitle(ele);
 
 	/*battle fieldの用意*/
-	const eEnemyDiv = document.getElementById('enemyDiv');
-	const eHeroDiv = document.getElementById('heroDiv');
-	prepareField(eEnemyDiv,eHeroDiv);
+	const eFieldDiv = document.getElementById('battleField');
+	prepareField(eFieldDiv);
 	//window.addEventListener('resize',prepareField);
 
 	/*キャラクターの用意*/
@@ -125,13 +124,9 @@ onload = function() {
 		～<h1 id="date" style="display:inline;"></h1>～
 		<h1>バハムートへの挑戦状</h1>
 
-		<div style="background-color:black;">
-			<div id="enemyDiv" style="background-color:black;height:400px;">
+		<div id="battleField" style="background-color:black;">
 				<img id="enemy">
-			</div>
-			<div id="heroDiv" style="background-color:black;height:400px;">
-				<img id="hero">
-			</div>
+				<img id="hero" >
 			<div class="clearFloat"></div>
 		</div>
 

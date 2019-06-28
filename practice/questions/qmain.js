@@ -332,7 +332,7 @@ Words.prototype.correct = function() {
 
 		this.eE.vibrate();
 		/*敵との距離*/
-		const dist = this.eE.parentNode.offsetWidth * 2 - 200 - this.eE.width - this.eH.width;
+		const dist = this.eE.parentNode.offsetWidth - 200 - this.eE.width - this.eH.width;
 		this.eH.move(-dist,0,0.1);
 		if(flag) {
 			/*戦闘終了*/
@@ -391,7 +391,7 @@ Words.prototype.incorrect = function() {
 		this.audioI.currentTime = 0;
 		this.audioI.play();
 		/*敵との距離*/
-		const dist = this.eE.parentNode.offsetWidth * 2 - 200 - this.eE.width - this.eH.width;
+		const dist = this.eE.parentNode.offsetWidth - 200 - this.eE.width - this.eH.width;
 		this.eE.move(dist,0,0.1);
 		this.eH.vibrate();
 		let date = new Date();
@@ -565,15 +565,18 @@ const setTitle = function(element) {
 };
 
 
-Image.TOP = 0;
-Image.MIDDLE = 1;
-Image.BOTTOM = 2;
 
 /**********************************************************
  * 指定時間後に画像を切り替えます
+ ** (Number) time : 秒 この時間経過後に表示する。
+ ** (Number) posTB : Imageのプロパティーのうち(TOP,MIDDLE,BOTTOM)のどれか。親エレメント内における上下の位置
+ ** (Number) posLR : ピクセル 親エレメントにおける左右の位置 プラスなら左から、マイナスなら右からの移動量を示す
  **********************************************************/
+Image.TOP = 0;
+Image.MIDDLE = 1;
+Image.BOTTOM = 2;
 Image.prototype.appearElement = function(sFilename,time,posTB,posLR) {	
-	let nn,sTop;
+	let nn,sTop,sLeft;
 
 	if(posTB == Image.TOP) nn = 0;
 	else if (posTB == Image.MIDDLE) nn = 0.5;
@@ -581,13 +584,14 @@ Image.prototype.appearElement = function(sFilename,time,posTB,posLR) {
 	else console.error('\'posTB\' is not TOP,MIDDLE nor BOTTOM');
 
 	let parentWidth = this.parentNode.offsetWidth;
-	let sLeft;
+	let parentHeight = this.parentNode.offsetHeight;
 	const hogeFlag = setInterval(()=>{
 		clearInterval(hogeFlag);
 		this.onload = function() {
-			if(posLR < 0) sLeft = 'left:' + (parentWidth - this.width + posLR).toString() + 'px;';
-			else sLeft = 'left:' + posLR.toString() + 'px;';
-			sTop = 'top:' + ((this.parentNode.offsetHeight - this.height) * nn).toString() + 'px;';
+//			if(posLR < 0) sLeft = 'left:' + (parentWidth - this.width + posLR).toString() + 'px;';
+//			else sLeft = 'left:' + posLR.toString() + 'px;';
+			sLeft = 'left:' + posLR.toString() + 'px;';
+			sTop = 'top:' + ((parentHeight - this.height) * nn).toString() + 'px;';
 			this.style = 'opacity:1.0;position:relative;'+sTop+sLeft;
 		}
 		this.src = sFilename;
@@ -625,9 +629,9 @@ Image.prototype.disappear = function(time) {
 Image.prototype.vibrate = function() {
 	const wide = 15;/*揺れ幅*/
 	const beforeLeft = this.style.left;
-	const left = Number(beforeLeft.match(/\d+/)[0]);
+	const left = Number(beforeLeft.match(/\-*\d+(?:\.\d+)*/)[0]);
 	const beforeTop = this.style.top;
-	const top = Number(beforeTop.match(/\d+/)[0]);
+	const top = Number(beforeTop.match(/\-*\d+(?:\.\d+)*/)[0]);
 	const height = this.height;
 	let parentHeight = this.parentNode.offsetHeight;
 	let sTop = 'top:'+ ((parentHeight - height)*0.5).toString() + 'px;';
@@ -658,10 +662,10 @@ Image.prototype.move = function(xx,yy,time) {
 	let sLeft='',sTop='';
 	const div = 10;/*コマの数*/
 	const beforeTop = this.style.top;
-	const top = Number(beforeTop.match(/\d+/)[0]);
+	const top = Number(beforeTop.match(/\-*\d+(?:\.\d+)*/)[0]);
 	const ddy = yy / div;
 	const beforeLeft = this.style.left;
-	const left = Number(beforeLeft.match(/\d+/)[0]);
+	const left = Number(beforeLeft.match(/\-*\d+(?:\.\d+)*/)[0]);
 	const ddx = xx / div;
 	let count = 0;
 	const myself = this;
@@ -685,14 +689,14 @@ Image.prototype.move = function(xx,yy,time) {
 			sLeft = 'left:' + (Math.round(left + ddx * count)).toString() + 'px;';
 			sTop = 'top:' + (Math.round(top + ddy * count)).toString() + 'px;';
 		}
-		myself.style = 'position:relative;' + sTop + ';' + sLeft;
+		myself.style = 'position:relative;' + sTop + sLeft;
 
 
 	},time*1000/div);
 };
 
-const prepareField = function(eE,eH) {
-	const sStyleWidth = (document.getElementsByTagName('body')[0].offsetWidth * .5).toString() + 'px';
-	eE.style.width = sStyleWidth;
-	eH.style.width = sStyleWidth;
+const prepareField = function(elementDiv) {
+	const eBody = document.getElementsByTagName('body')[0]
+	elementDiv.style.width = (eBody.offsetWidth - 0).toString() + 'px';
+	elementDiv.style.height = '400px';
 };
