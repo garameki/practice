@@ -128,19 +128,26 @@ const ClsConversations2 = function (sVariable,elementVideo,elementButton,content
 };
 inherits(ClsConversations2,ClsButtons);/*ClsButtonsを継承*/
 ClsConversations2.prototype.draw = function() {
+	let colon;
 	let sHtml = '<br><button class="funcButton" onclick="'+this.sVariable+'.swDraw();">言語切替</button>  <button class="funcButton" onclick="clearInterval(hoge);eVideo.pause();">停止</button><br><br>';
 	sHtml += "<table>";
 	let nBeforePerson = 0;
 	for(let ii=0;ii<this.contents.length-1;ii++) {
-		let pp = this.contents[ii][this.PERSON];
-		if(nBeforePerson != pp) {
-			if(nBeforePerson != 0) {
-				sHtml += "</td></tr>"
+		if(this.contents[ii][this.ENG] == '') {
+			/*skip line*/
+		} else {
+			let pp = this.contents[ii][this.PERSON];
+			if(nBeforePerson != pp) {
+				if(nBeforePerson != 0) {
+					sHtml += "</td></tr>"
+				}
+				if(htmlNames[pp-1] == '') colon = '';
+				else colon = ':';
+				sHtml += '<tr><td valign="top" style="padding-top:9px;"><span style="font-weight:900;">' + htmlNames[pp-1] + '</span>'+colon+'</td><td>';
+				nBeforePerson = pp;
 			}
-			sHtml += '<tr><td valign="top" style="padding-top:9px;"><span style="font-weight:900;">' + htmlNames[pp-1] + '</span>:</td><td>';
-			nBeforePerson = pp;
+			sHtml += '<button class="phrase" id="'+this.sVariable+ii.toString()+'" style="border:solid 0px white;background-color:white;font-size:' + this.size + 'px;" onfocus="'+this.sVariable+'.numFocus='+ii+';" onclick="clearInterval(hoge);'+this.sVariable+'.elementV.currentTime='+this.contents[ii][this.TIME].toString()+';'+this.sVariable+'.elementV.play();hoge = setInterval(function() {'+this.sVariable+'.elementV.currentTime='+this.contents[ii][this.TIME].toString()+';'+this.sVariable+'.elementV.play();},'+((this.contents[ii+1][this.TIME]-this.contents[ii][this.TIME])*1000).toString()+');">'+this.contents[ii][this.lang]+'</button><br>';
 		}
-		sHtml += '<button class="phrase" id="'+this.sVariable+ii.toString()+'" style="border:solid 0px white;background-color:white;font-size:' + this.size + 'px;" onfocus="'+this.sVariable+'.numFocus='+ii+';" onclick="clearInterval(hoge);'+this.sVariable+'.elementV.currentTime='+this.contents[ii][this.TIME].toString()+';'+this.sVariable+'.elementV.play();hoge = setInterval(function() {'+this.sVariable+'.elementV.currentTime='+this.contents[ii][this.TIME].toString()+';'+this.sVariable+'.elementV.play();},'+((this.contents[ii+1][this.TIME]-this.contents[ii][this.TIME])*1000).toString()+');">'+this.contents[ii][this.lang]+'</button><br>';
 	}
 	sHtml += '</table>';
 

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css1.css">
+		<script type="application/javascript" src="main8.js"></script>
+		<script type="application/javascript" src="main8_onload_friday.js"></script>
+		<script type="application/javascript">
+const htmlTitle = "Review";
+const htmlDateBefore = new Date('2019/6/27');
+const htmlDateToday = new Date('2019/6/28');
+const htmlDateAfter = new Date('2019/6/31');
+const htmlNames = ["","Boss","You","Onishi"];/*Practical Challengeでも使用します*/
+const htmlConversations = [
+/*
+ [,1,"",""]
+,[,1,"",""]
+,[]
+飛ばしたい部分は英語の部分を''にしてください
+ [,1,"Question Monday","月曜日の問題"]
+,[,1,"Conversation Monday","月曜日の会話"]
+,[,1,"",""]
+,[,1,"Answer Monday","月曜日の答え"]
+,[,1,"",""]
+,[,1,"Question Tuesday","火曜日の問題"]
+,[,1,"Conversation Tuesday","火曜日の会話"]
+,[,1,"",""]
+,[,1,"Answer Tuesday","火曜日の答え"]
+,[,1,"",""]
+,[,1,"Question Wednesday","水曜日の問題"]
+,[,1,"Conversation Wednesday","水曜日の会話"]
+,[,1,"",""]
+,[,1,"Answer Wednesday","水曜日の答え"]
+,[,1,"",""]
+,[,1,"Question Thursday","木曜日の問題"]
+,[,1,"Conversation Thursday","木曜日の会話"]
+,[,1,"",""]
+,[,1,"Answer Thursday","木曜日の答え"]
+,[,1,"",""]
+.[10000]
+*/
+ [47.5,1,"Question Monday","月曜日の問題"]
+,[69,1,"Conversation Monday","月曜日の会話"]
+,[98,1,"",""]
+,[117.6,1,"Answer Monday","月曜日の答え"]
+,[118.3,1,"",""]
+,[145,1,"Question day","火曜日の問題"]
+,[164,1,"Conversation day","火曜日の会話"]
+,[195,1,"",""]
+,[213,1,"Answer day","火曜日の答え"]
+,[214.5,1,"",""]
+,[239,1,"Question Wednesday","水曜日の問題"]
+,[258,1,"Conversation Wednesday","水曜日の会話"]
+,[291,1,"",""]
+,[308,1,"Answer Wednesday","水曜日の答え"]
+,[309,1,"",""]
+,[330,1,"Question Thursday","木曜日の問題"]
+,[349,1,"Conversation Thursday","木曜日の会話"]
+,[383,1,"",""]
+,[401.5,1,"Answer Thursday","木曜日の答え"]
+,[402.5,1,"",""]
+,[10000]
+];
+
+const htmlPractices = [
+];
+
+const htmlChallenges1 = [
+/*
+ [,,"",""]
+,[,,"",""]
+,[]
+*/
+ [462,4,"FORWARDS","前説"]
+,[523,1,"",""]
+,[540,2,"Do you have any proposals?","何か提案があるかい？"]
+,[543,3,"I propose we develop a new type of smartphone that is unusable while walking.","歩いている間は使うことのできないスマートフォンの開発を提案します。"]
+,[549,3,"To put it simply, all we have to do is put an axtra sensor into the machine.","単純に言えば機会に追加のセンサーを入れるだけですよ。"]
+,[555,3,"We can change the world into a safer place, don't you think?","世界をより安全な場所にできる、そう思いませんか？"]
+,[559,3,"",""]
+
+
+];
+
+
+const htmlChallenges2 = [
+/*
+ [,,"",""]
+,[,,"",""]
+,[]
+*/
+ [462,4,"FORWARDS","前説"]
+,[523,1,"",""]
+,[673,2,"Do you have any proposals?","何か提案があるかい？"]
+,[675.5,3,"I have a great idea.","私にはいいアイデアがあります。"]
+,[678,3,"How about we produde a smartphone that turns itself off automatically if the holder is walking.","もし持っている人が歩いていたら、自動的に電源が切れるスマートフォンを作ってみてはどうでしょうか？"]
+,[685.7,3,"This should be possible by simply putting a sensor into the device.","デバイスにセンサーを加えれば可能なはずです。"]
+,[690.5,3,"Just imagine how much safer the world will be if we are successful in developing this.","私たちがこの開発に成功すればどれほど世界はより安全になるのか、考えてみてください。"]
+,[697,3]
+];
+
+const htmlWords = [
+/*
+ [,,"",""]
+,[,,"",""]
+*/
+ [573.5,586,"I propose + 節","私は～を提案する"]
+,[507.5,509,"unusable","使うことができない"]
+,[604.4,632,"to put it simply","単純に言えば"]
+,[634.4,638.5,"change A into B","AをBに変える"]
+,[518.4,519,"extra","追加の"]
+,[724.5,731.5,"How about +節","(文)というのはどうでしょうか？"]
+];
+
+		</script>
+	</head>
+	<body>
+
+<h1 id="date"></h1>
+		<h1 id="htitle"></h1>
+
+		<h2>CONVERSATION</h2>
+		<div id="conversation"></div>
+
+		<h2>PRACTICE</h2>
+		<div id="practices"></div>
+
+		<h1>PRACTICAL CHALLENGE</h1>
+		<h2>SIMPLE</h2>
+		<div id="challenge1"></div>
+
+		<h2>ADVANCED</h2>
+		<div id="challenge2"></div>
+
+		<h2 style="border-left:solid 1px lightgrey;border-top:solid 1px lightgrey;border-bottom:solid 2px black;border-right:solid 2px black;position:relative;left:30px;" onmouseover="document.getElementById('wordsans').innerHTML = '<span style=\' font-size:20px;\' >スコアクリアボタンで開始。全部3点取れば終了だよ。</span>';" onmouseout="document.getElementById('wordsans').innerText = '';">WORDS AND PHRASES</h2>
+		<div id="words"></div>
+		<div id="wordsans">　</div>
+		<div id="wordslist"></div>
+
+		<center><a id="before">前日</a>&nbsp;&nbsp;&nbsp;<a id="after">翌日</a>
+		</center>
+		<br><br><br>
+
+
+	</body>
+</html>
